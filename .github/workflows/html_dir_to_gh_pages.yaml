@@ -11,11 +11,16 @@ jobs:
   html_dir_to_gh-pages:
     runs-on: ubuntu-latest
     name: HTML dir to gh-pages
+      
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: HTML dir to GitHub Pages
+        env: 
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+            GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
         uses: uibcdf/action-html-dir-to-gh-pages@1.0.0
         with:
           branch: main
