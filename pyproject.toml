@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "histopath-bim-des"
+version = "0.0.0"
+description = "BIM-DES integration demo for Addenbrooke's Hospital Histopathology Department, Cambridge"
+authors = [
+    "Yin-Chi Chan <ycc39@cam.ac.uk>",
+    "Nicola Moretti <n.moretti@ucl.ac.uk>",
+]
+maintainers = ["Yin-Chi Chan <ycc39@cam.ac.uk>"]
+readme = "README.md"
+classifiers = [
+    "Private :: Do Not Upload",
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+]
+
+[tool.poetry.dependencies]
+python = "~3.12"
+greenlet = "^3.0.3"
+pandas = "^2.2.2"
+openpyxl = "^3.1.2"
+ifcopenshell = "^0.7.0.240423"
+shapely = "^2.0.4"
+networkx = "^3.3"
+natsort = "^8.4.0"
+pydantic = "^2.7.1"
+dacite = "^1.8.1"
+scipy = "^1.13.0"
+salabim = "^24.0.4.post1"
+ipykernel = "^6.29.4"
+
+
+[tool.poetry.group.dev.dependencies]
+matplotlib = "^3.8.4"
+pylint = "^3.1.0"
+erdantic = "^1.0.2"
+sphobjinv = "^2.3.1"
+
+
+[tool.poetry.group.doc.dependencies]
+sphinx = "^7.3.7"
+myst-parser = "^3.0.1"
+sphinx-rtd-theme = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

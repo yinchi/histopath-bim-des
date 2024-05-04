@@ -1,0 +1,188 @@
+@startuml
+skinparam {
+   ActivityFontSize 9
+   ActivityBorderThickness<<start>> 2
+   ActivityFontStyle<<start>> bold
+   ActivityFontSize<<start>> 12
+   ActivityBackgroundColor<<start>> #limegreen
+   ActivityBorderThickness<<end>> 1.5
+   ActivityFontStyle<<end>> italic
+   ActivityBackgroundColor<<end>> #limegreen
+   ActivityBackgroundColor<<deliver>> #lightblue
+   ActivityBackgroundColor<<procedure>> #pink
+   ActivityBackgroundColor<<collate>> #lightsalmon
+   ActivityBackgroundColor #lightgreen
+}
+split
+   -[hidden]->
+   start
+
+   :reception_start; <<start>>
+   :booking_in;
+   :batch; <<procedure>>
+   -[#red,bold]->
+   #lightblue:deliver;
+
+   :cutup_start; <<start>>
+   split
+      :cutup_bms;
+      :batch; <<procedure>>
+      -[#red,bold]->
+      :deliver;  <<deliver>>
+      -[#red,bold]->
+   split again
+      :cutup_pool;
+      :batch; <<procedure>>
+      -[#red,bold]->
+      :deliver;  <<deliver>>
+      -[#red,bold]->
+   split again
+      :cutup_large;
+      :batch; <<procedure>>
+      -[#red,bold]->
+      :deliver; <<deliver>>
+      -[#red,bold]->
+      -[#red,bold]->
+   end split
+   -[#red,bold]->
+   (A)
+
+   detach
+split again
+
+   -[hidden]->
+   (A)
+   -[#red,bold]->
+   :processing_start; <<start>>
+   -[#blue,dashed]->
+   split
+      -[#blue,dashed]->
+      :batch; <<procedure>>
+      -[#purple,bold]->
+      #lightgreen:decalc\n_bone_station;
+      -[#blue,dashed]->
+   split again
+      -[#blue,dashed]->
+      #lightgreen:decalc\n_bone_oven;
+      -[#blue,dashed]->
+   split again
+      -[#blue,dashed]->
+   endsplit
+   -[#blue,dashed]->
+   #lightgreen:processing\n_assign_queue;
+   -[#blue,dashed]->
+   split
+      -[#blue,dashed]->
+      :batch; <<procedure>>
+      -[#green,bold]->
+      #lightgreen:processing\n_urgents;
+      -[#blue,dashed]->
+   split again
+      -[#blue,dashed]->
+      :batch; <<procedure>>
+      -[#green,bold]->
+      #lightgreen:processing\n_smalls;
+      -[#blue,dashed]->
+   split again
+      -[#blue,dashed]->
+      :batch; <<procedure>>
+      -[#green,bold]->
+      #lightgreen:processing\n_larges;
+      -[#blue,dashed]->
+   split again
+      -[#blue,dashed]->
+      :batch; <<procedure>>
+      -[#green,bold]->
+      #lightgreen:processing\n_megas;
+      -[#blue,dashed]->
+   endsplit
+   -[#blue,dashed]->
+   #lightgreen:embed_and_trim;
+   -[#blue,dashed]->
+   #lightsalmon:collate; <<collate>>
+   :post_processing; <<end>>
+   :batch; <<procedure>>
+   -[#red,bold]->
+   :deliver;  <<deliver>>
+   -[#red,bold]->
+   (B)
+
+   detach
+split again
+
+   -[hidden]->
+   (B)
+   -[#red,bold]->
+   :microtomy; <<start>>
+   :batch;  <<procedure>>
+   -[#red,bold]->
+   :deliver;  <<deliver>>
+   -[#red,bold]->
+
+   :staining_start; <<start>>
+   -[#magenta,dashed]->
+   split
+      -[#magenta,dashed]->
+      :batch; <<procedure>>
+      -[#purple,bold]->
+      :staining_regulars\n\n<i>(includes</i>\n<i>cover-slipping)</i>;
+      -[#magenta,dashed]->
+   split again
+      -[#magenta,dashed]->
+      :batch; <<procedure>>
+      -[#purple,bold]->
+      :staining_megas\n\n<i>(includes</i>\n<i>cover-slipping)</i>;
+      -[#magenta,dashed]->
+   end split
+   -[#magenta,dashed]->
+   :collate; <<collate>>
+   -[#blue,dashed]->
+   :collate; <<collate>>
+   :post_staining; <<end>>
+   :batch;  <<procedure>>
+   -[#red,bold]->
+   :deliver;  <<deliver>>
+   -[#red,bold]->
+   (C)
+
+   detach
+split again
+
+   -[hidden]->
+   (C)
+   -[#red,bold]->
+   :labelling; <<start>>
+   :batch;  <<procedure>>
+   -[#red,bold]->
+   :deliver;  <<deliver>>
+   -[#red,bold]->
+
+   :scanning; <<start>>
+   -[#magenta,dashed]->
+   split
+      -[#magenta,dashed]->
+      :batch; <<procedure>>
+      -[#purple,bold]->
+      :scanning_regulars;
+      -[#magenta,dashed]->
+   split again
+      -[#magenta,dashed]->
+      :batch; <<procedure>>
+      -[#purple,bold]->
+      :scanning_megas;
+      -[#magenta,dashed]->
+   end split
+   -[#magenta,dashed]->
+   :collate; <<collate>>
+   -[#blue,dashed]->
+   :collate; <<collate>>
+   :post_scanning; <<end>>
+   :batch;  <<procedure>>
+   -[#red,bold]->
+   :deliver;  <<deliver>>
+   -[#red,bold]->
+   :qc; <<start>>
+   :reporting; <<start>>
+end split
+end
+@enduml

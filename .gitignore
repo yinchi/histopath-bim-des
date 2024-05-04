@@ -1,0 +1,6 @@
+.venv
+_build
+__pycache__
+
+*private*
+docs/apidoc

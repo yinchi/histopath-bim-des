@@ -1,0 +1,13 @@
+{
+    "autoDocstring.guessTypes": true,
+    "autoDocstring.docstringFormat": "google-notypes",
+    "python.analysis.extraPaths": [
+        ".venv/lib/python3.12/site-packages"
+    ],
+    "pylint.args": [
+        "--rcfile=${workspaceFolder}/.pylintrc"
+    ],
+    "pylint.ignorePatterns": [
+        ".venv"
+    ]
+}
