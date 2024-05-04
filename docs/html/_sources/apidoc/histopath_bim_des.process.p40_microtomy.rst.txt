@@ -1,0 +1,7 @@
+histopath\_bim\_des.process.p40\_microtomy module
+=================================================
+
+.. automodule:: histopath_bim_des.process.p40_microtomy
+   :members:
+   :undoc-members:
+   :show-inheritance:

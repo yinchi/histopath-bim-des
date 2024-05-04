@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.distribution module &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.excel module" href="histopath_bim_des.excel.html" />
+    <link rel="prev" title="histopath_bim_des.bim module" href="histopath_bim_des.bim.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="histopath_bim_des.html">histopath_bim_des package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="histopath_bim_des.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html">histopath_bim_des.bim module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">histopath_bim_des.distribution module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.Constant"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.Tri"><code class="docutils literal notranslate"><span class="pre">Tri</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.PERT"><code class="docutils literal notranslate"><span class="pre">PERT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.IntPERT"><code class="docutils literal notranslate"><span class="pre">IntPERT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.IntTri"><code class="docutils literal notranslate"><span class="pre">IntTri</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.IntConstant"><code class="docutils literal notranslate"><span class="pre">IntConstant</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.distribution.IntDistribution"><code class="docutils literal notranslate"><span class="pre">IntDistribution</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.excel.html">histopath_bim_des.excel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html">histopath_bim_des.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html">histopath_bim_des.specimens module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.util.html">histopath_bim_des.util module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.html">histopath_bim_des package</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.distribution module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.distribution.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-histopath_bim_des.distribution">
+<span id="histopath-bim-des-distribution-module"></span><h1>histopath_bim_des.distribution module<a class="headerlink" href="#module-histopath_bim_des.distribution" title="Link to this heading"></a></h1>
+<p>Random distributions for the simulation model.</p>
+<p>This module overrides the <cite>salabim.Constant</cite> and
+<cite>salabim.Triangular</cite> classes to provide better
+string representations, and adds a PERT distribution.</p>
+<p>See: <a class="reference external" href="https://en.wikipedia.org/wiki/PERT_distribution">https://en.wikipedia.org/wiki/PERT_distribution</a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Constant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">Constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#Constant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.Constant" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></p>
+<p>Constant distribution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Constant._value">
+<span class="sig-name descname"><span class="pre">_value</span></span><a class="headerlink" href="#histopath_bim_des.distribution.Constant._value" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Tri">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">Tri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#Tri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.Tri" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Triangular</span></code></p>
+<p>Triangular distribution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Tri._low">
+<span class="sig-name descname"><span class="pre">_low</span></span><a class="headerlink" href="#histopath_bim_des.distribution.Tri._low" title="Link to this definition"></a></dt>
+<dd><p>Minimum of the distribution</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Tri._mode">
+<span class="sig-name descname"><span class="pre">_mode</span></span><a class="headerlink" href="#histopath_bim_des.distribution.Tri._mode" title="Link to this definition"></a></dt>
+<dd><p>Mode of the distribution. If None, replaced with the mean of <cite>_low</cite> and <cite>_high</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Tri._high">
+<span class="sig-name descname"><span class="pre">_high</span></span><a class="headerlink" href="#histopath_bim_des.distribution.Tri._high" title="Link to this definition"></a></dt>
+<dd><p>Maximum of the distribution. If None, replaced with <cite>_min</cite>, thus
+forming a constant distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">PERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_unit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#PERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.PERT" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Triangular</span></code></p>
+<p>PERT distribution.</p>
+<p>A three-point distribution with more probability mass around the mode than the
+triangular distribution.  The mean of the distribution is
+<cite>(_low + _shape * _mode + _high) / (_shape + 2)</cite>.
+By default, <cite>_shape = 4</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT._low">
+<span class="sig-name descname"><span class="pre">_low</span></span><a class="headerlink" href="#histopath_bim_des.distribution.PERT._low" title="Link to this definition"></a></dt>
+<dd><p>Minimum of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT._mode">
+<span class="sig-name descname"><span class="pre">_mode</span></span><a class="headerlink" href="#histopath_bim_des.distribution.PERT._mode" title="Link to this definition"></a></dt>
+<dd><p>Mode of the distribution. If None, replaced with the mean of <cite>_low</cite> and <cite>_high</cite>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT._high">
+<span class="sig-name descname"><span class="pre">_high</span></span><a class="headerlink" href="#histopath_bim_des.distribution.PERT._high" title="Link to this definition"></a></dt>
+<dd><p>Maximum of the distribution. If None, replaced with <cite>_min</cite>,
+thus forming a constant distribution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT.print_info">
+<span class="sig-name descname"><span class="pre">print_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">as_str</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TextIO" title="(in Python v3.12)"><span class="pre">TextIO</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#PERT.print_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.PERT.print_info" title="Link to this definition"></a></dt>
+<dd><p>Print info about the distribution.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#PERT.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.PERT.sample" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Sample of the distribtion</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.PERT.mean">
+<span class="sig-name descname"><span class="pre">mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#PERT.mean"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.PERT.mean" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Mean of the distribution</strong></p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.Distribution">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">Distribution</span></span><a class="headerlink" href="#histopath_bim_des.distribution.Distribution" title="Link to this definition"></a></dt>
+<dd><p>A continuous distribution (constant, triangular, or PERT).</p>
+<p>alias of <a class="reference internal" href="#histopath_bim_des.distribution.Constant" title="histopath_bim_des.distribution.Constant"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></a> | <a class="reference internal" href="#histopath_bim_des.distribution.Tri" title="histopath_bim_des.distribution.Tri"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tri</span></code></a> | <a class="reference internal" href="#histopath_bim_des.distribution.PERT" title="histopath_bim_des.distribution.PERT"><code class="xref py py-class docutils literal notranslate"><span class="pre">PERT</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">IntPERT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#IntPERT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Discretized PERT distribution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT.low">
+<span class="sig-name descname"><span class="pre">low</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT.low" title="Link to this definition"></a></dt>
+<dd><p>Minimum of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT.mode" title="Link to this definition"></a></dt>
+<dd><p>Mode of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT.high">
+<span class="sig-name descname"><span class="pre">high</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT.high" title="Link to this definition"></a></dt>
+<dd><p>Maximum of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT.pert">
+<span class="sig-name descname"><span class="pre">pert</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT.pert" title="Link to this definition"></a></dt>
+<dd><p>Underlying continuous PERT distribution, i.e.
+<cite>PERT(low-mode-0.5, 0, high-mode+0.5)</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntPERT.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#IntPERT.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.IntPERT.sample" title="Link to this definition"></a></dt>
+<dd><p>Sample the distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">IntTri</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">high</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#IntTri"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.IntTri" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Discretized Triangular distribution.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri.low">
+<span class="sig-name descname"><span class="pre">low</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntTri.low" title="Link to this definition"></a></dt>
+<dd><p>Minimum of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntTri.mode" title="Link to this definition"></a></dt>
+<dd><p>Mode of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri.high">
+<span class="sig-name descname"><span class="pre">high</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntTri.high" title="Link to this definition"></a></dt>
+<dd><p>Maximum of the distribution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri.tri">
+<span class="sig-name descname"><span class="pre">tri</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntTri.tri" title="Link to this definition"></a></dt>
+<dd><p>Underlying continuous Tri distribution, i.e.
+<cite>Tri(low-mode-0.5, 0, high-mode+0.5)</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntTri.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#IntTri.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.IntTri.sample" title="Link to this definition"></a></dt>
+<dd><p>Sample the distribution.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntConstant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">IntConstant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">randomstream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Environment</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/distribution.html#IntConstant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.distribution.IntConstant" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></p>
+<p>Alias of sim.Constant for integers.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntConstant.value">
+<span class="sig-name descname"><span class="pre">value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#histopath_bim_des.distribution.IntConstant.value" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="histopath_bim_des.distribution.IntDistribution">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.distribution.</span></span><span class="sig-name descname"><span class="pre">IntDistribution</span></span><a class="headerlink" href="#histopath_bim_des.distribution.IntDistribution" title="Link to this definition"></a></dt>
+<dd><p>A continuous distribution (constant, triangular, or PERT).</p>
+<p>alias of <a class="reference internal" href="#histopath_bim_des.distribution.IntConstant" title="histopath_bim_des.distribution.IntConstant"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntConstant</span></code></a> | <a class="reference internal" href="#histopath_bim_des.distribution.IntTri" title="histopath_bim_des.distribution.IntTri"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntTri</span></code></a> | <a class="reference internal" href="#histopath_bim_des.distribution.IntPERT" title="histopath_bim_des.distribution.IntPERT"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntPERT</span></code></a></p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="histopath_bim_des.bim.html" class="btn btn-neutral float-left" title="histopath_bim_des.bim module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.excel.html" class="btn btn-neutral float-right" title="histopath_bim_des.excel module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

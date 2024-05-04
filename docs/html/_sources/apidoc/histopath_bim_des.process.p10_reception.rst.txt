@@ -1,0 +1,7 @@
+histopath\_bim\_des.process.p10\_reception module
+=================================================
+
+.. automodule:: histopath_bim_des.process.p10_reception
+   :members:
+   :undoc-members:
+   :show-inheritance:

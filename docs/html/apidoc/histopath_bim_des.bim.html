@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.bim module &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.distribution module" href="histopath_bim_des.distribution.html" />
+    <link rel="prev" title="histopath_bim_des.process.p90_reporting module" href="histopath_bim_des.process.p90_reporting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="histopath_bim_des.html">histopath_bim_des package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="histopath_bim_des.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">histopath_bim_des.bim module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.bim.BimModel"><code class="docutils literal notranslate"><span class="pre">BimModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.bim.ShapelyModel"><code class="docutils literal notranslate"><span class="pre">ShapelyModel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.bim.logical_graph"><code class="docutils literal notranslate"><span class="pre">logical_graph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.bim.runner_times"><code class="docutils literal notranslate"><span class="pre">runner_times()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html">histopath_bim_des.distribution module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.excel.html">histopath_bim_des.excel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html">histopath_bim_des.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html">histopath_bim_des.specimens module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.util.html">histopath_bim_des.util module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.html">histopath_bim_des package</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.bim module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.bim.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-histopath_bim_des.bim">
+<span id="histopath-bim-des-bim-module"></span><h1>histopath_bim_des.bim module<a class="headerlink" href="#module-histopath_bim_des.bim" title="Link to this heading"></a></h1>
+<p>Runner-related model parameters.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.bim.</span></span><span class="sig-name descname"><span class="pre">BimModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elevations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><span class="pre">DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">walls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><span class="pre">DataFrame</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#BimModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.BimModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Representation of the histopathology lab’s BIM data.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel.elevations">
+<span class="sig-name descname"><span class="pre">elevations</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#histopath_bim_des.bim.BimModel.elevations" title="Link to this definition"></a></dt>
+<dd><p>Elevation of each building storey, in metres.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel.doors">
+<span class="sig-name descname"><span class="pre">doors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><span class="pre">DataFrame</span></a></em><a class="headerlink" href="#histopath_bim_des.bim.BimModel.doors" title="Link to this definition"></a></dt>
+<dd><p>Dataframe of door coordinate data.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel.walls">
+<span class="sig-name descname"><span class="pre">walls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><span class="pre">DataFrame</span></a></em><a class="headerlink" href="#histopath_bim_des.bim.BimModel.walls" title="Link to this definition"></a></dt>
+<dd><p>Dataframe of wall coordinate data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel.from_ifc">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_ifc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.12)"><span class="pre">PathLike</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">door_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'d\\d+$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Self" title="(in Python v3.12)"><span class="pre">Self</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#BimModel.from_ifc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.BimModel.from_ifc" title="Link to this definition"></a></dt>
+<dd><p>Parse an Industry Foundation Model file
+representation of the histopathology lab.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.BimModel.to_shapely">
+<span class="sig-name descname"><span class="pre">to_shapely</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#histopath_bim_des.bim.ShapelyModel" title="histopath_bim_des.bim.ShapelyModel"><span class="pre">ShapelyModel</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#BimModel.to_shapely"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.BimModel.to_shapely" title="Link to this definition"></a></dt>
+<dd><p>Returns a Shapely representation of a
+floor in the <cite>BimModel</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> – Level number of the floor.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shapely representation of the selected floor, where all doors and walls
+are represented as <cite>shapely.Polygon</cite> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.bim.</span></span><span class="sig-name descname"><span class="pre">ShapelyModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wall_shapes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon" title="(in Shapely)"><span class="pre">Polygon</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">door_shapes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon" title="(in Shapely)"><span class="pre">Polygon</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#ShapelyModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Shapely representation of a floor in the histopathology lab.
+All doors and walls are represented as <cite>shapely.Polygon</cite> instances.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel.wall_shapes">
+<span class="sig-name descname"><span class="pre">wall_shapes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon" title="(in Shapely)"><span class="pre">Polygon</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel.wall_shapes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel.door_shapes">
+<span class="sig-name descname"><span class="pre">door_shapes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon" title="(in Shapely)"><span class="pre">Polygon</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel.door_shapes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel.is_valid_box">
+<span class="sig-name descname"><span class="pre">is_valid_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://shapely.readthedocs.io/en/stable/reference/shapely.Polygon.html#shapely.Polygon" title="(in Shapely)"><span class="pre">Polygon</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ok_doors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#ShapelyModel.is_valid_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel.is_valid_box" title="Link to this definition"></a></dt>
+<dd><p>Determines if box intersects with a wall or door
+except for <cite>ok_doors</cite>. <cite>ok_doors</cite> will typically be the
+source and destination doors of a shortest-path algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>box</strong> – The box to check against the current model.</p></li>
+<li><p><strong>ok_doors</strong> – A list of doors to ignore when checking for intersections.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel.shortest_path">
+<span class="sig-name descname"><span class="pre">shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_door</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_door</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(30,</span> <span class="pre">45)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(90,</span> <span class="pre">70)</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" title="(in NetworkX v3.3)"><span class="pre">Graph</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#ShapelyModel.shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel.shortest_path" title="Link to this definition"></a></dt>
+<dd><p>Find the shortest path between two doors in the model.
+A reasonable search box has been provided for the current study
+(the histopathology lab at Addenbrooke’s Hospital, Cambridge, UK).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_door</strong> – Starting door on the path.</p></li>
+<li><p><strong>to_door</strong> – Destination door on the path.</p></li>
+<li><p><strong>grid_size</strong> – Grid size for pathfinding algorithm, in metres. Defaults to 0.5.</p></li>
+<li><p><strong>bottom_left</strong> – Bottom-left coordinate for pathfinding algorithm, in metres. Defaults to (30, 45).</p></li>
+<li><p><strong>top_right</strong> – Top-right coordinate for pathfinding algorithm, in metres. Defaults to (90,70).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://networkx.org/documentation/stable/reference/exceptions.html#networkx.NetworkXNoPath" title="(in NetworkX v3.3)"><strong>networkx.NetworkXNoPath</strong></a> – If no path exists between <cite>from_door</cite> and <cite>to_door</cite> without
+    passing through a wall or another door.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.ShapelyModel.plot_floor">
+<span class="sig-name descname"><span class="pre">plot_floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_left</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(30,</span> <span class="pre">45)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_right</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(100,</span> <span class="pre">80)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#ShapelyModel.plot_floor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.ShapelyModel.plot_floor" title="Link to this definition"></a></dt>
+<dd><p>Plots the floor model using Matplotlib. Reasonable axis limits
+have been provided for the current study (the histopathology lab at
+Addenbrooke’s Hospital, Cambridge, UK).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ax</strong> – The Axes object to plot to.</p></li>
+<li><p><strong>title</strong> – The plot title.</p></li>
+<li><p><strong>bottom_left</strong> – Bottom left corner of plot. Defaults to (30, 45), corresponding
+to metres in the floor plan.</p></li>
+<li><p><strong>top_right</strong> – Top right corner of plot. Defaults to (100, 80), corresponding
+to metres in the floor plan.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.logical_graph">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.bim.</span></span><span class="sig-name descname"><span class="pre">logical_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#histopath_bim_des.bim.ShapelyModel" title="histopath_bim_des.bim.ShapelyModel"><span class="pre">ShapelyModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" title="(in NetworkX v3.3)"><span class="pre">Graph</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#logical_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.logical_graph" title="Link to this definition"></a></dt>
+<dd><p>Construct a logical graph representation of the floor model,
+with nodes representing doors and edge weights representing travel
+times in seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> – Runner speed in m/s. Defaults to 1.2.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The logical graph for the given floor model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.bim.runner_times">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.bim.</span></span><span class="sig-name descname"><span class="pre">runner_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#histopath_bim_des.bim.BimModel" title="histopath_bim_des.bim.BimModel"><span class="pre">BimModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.RunnerConfig" title="histopath_bim_des.config.runners.RunnerConfig"><span class="pre">RunnerConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/histopath_bim_des/bim.html#runner_times"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.bim.runner_times" title="Link to this definition"></a></dt>
+<dd><p>Compute runner times between process stages in the
+histopathology model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – BIM model representation of the histopathology lab.</p></li>
+<li><p><strong>config</strong> – Dataclass containing runner parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Maps pairs of process stages to the time (in seconds) required to travel between them.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="histopath_bim_des.process.p90_reporting.html" class="btn btn-neutral float-left" title="histopath_bim_des.process.p90_reporting module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.distribution.html" class="btn btn-neutral float-right" title="histopath_bim_des.distribution module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

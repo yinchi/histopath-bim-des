@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.arrivals module
+==========================================
+
+.. automodule:: histopath_bim_des.config.arrivals
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,27 @@
+histopath\_bim\_des.process package
+===================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   histopath_bim_des.process.core
+   histopath_bim_des.process.p10_reception
+   histopath_bim_des.process.p20_cutup
+   histopath_bim_des.process.p30_processing
+   histopath_bim_des.process.p40_microtomy
+   histopath_bim_des.process.p50_staining
+   histopath_bim_des.process.p60_labelling
+   histopath_bim_des.process.p70_scanning
+   histopath_bim_des.process.p80_qc
+   histopath_bim_des.process.p90_reporting
+
+Module contents
+---------------
+
+.. automodule:: histopath_bim_des.process
+   :members:
+   :undoc-members:
+   :show-inheritance:

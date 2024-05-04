@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.batching module
+==========================================
+
+.. automodule:: histopath_bim_des.config.batching
+   :members:
+   :undoc-members:
+   :show-inheritance:

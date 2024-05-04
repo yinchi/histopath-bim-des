@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.excel &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.excel</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.excel</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for reading Excel data&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">PathLike</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+
+<span class="kn">import</span> <span class="nn">openpyxl</span> <span class="k">as</span> <span class="nn">oxl</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">openpyxl.cell.cell</span> <span class="kn">import</span> <span class="n">Cell</span>
+<span class="kn">from</span> <span class="nn">openpyxl.styles</span> <span class="kn">import</span> <span class="n">Font</span>
+<span class="kn">from</span> <span class="nn">openpyxl.utils</span> <span class="kn">import</span> <span class="n">range_boundaries</span>
+<span class="kn">from</span> <span class="nn">openpyxl.utils.dataframe</span> <span class="kn">import</span> <span class="n">dataframe_to_rows</span>
+<span class="kn">from</span> <span class="nn">openpyxl.worksheet.filters</span> <span class="kn">import</span> <span class="n">AutoFilter</span><span class="p">,</span> <span class="n">FilterColumn</span>
+<span class="kn">from</span> <span class="nn">openpyxl.worksheet.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">TableColumn</span><span class="p">,</span> <span class="n">TableStyleInfo</span>
+<span class="kn">from</span> <span class="nn">openpyxl.worksheet.worksheet</span> <span class="kn">import</span> <span class="n">Worksheet</span>
+
+<span class="n">CellType</span> <span class="o">=</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">datetime</span>
+
+
+<div class="viewcode-block" id="get_name">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.excel.html#histopath_bim_des.excel.get_name">[docs]</a>
+<span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="n">wbook</span><span class="p">:</span> <span class="n">oxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CellType</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CellType</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read an Excel named range as a single value or NumPy array.</span>
+<span class="sd">    Arrays are flattened if possible.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wbook: The workbook object.</span>
+<span class="sd">        name: Name of the Excel range to read.</span>
+
+<span class="sd">    Returns: A single value, or a nested list containing the named range&#39;s values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">worksheet</span><span class="p">,</span> <span class="n">cell_range</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">wbook</span><span class="o">.</span><span class="n">defined_names</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">destinations</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">cell_range</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">cell_range</span><span class="p">,</span> <span class="s1">&#39;$&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># strip $ from cell range string</span>
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">wbook</span><span class="p">[</span><span class="n">worksheet</span><span class="p">][</span><span class="n">cell_range</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">Cell</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cells</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="get_table">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.excel.html#histopath_bim_des.excel.get_table">[docs]</a>
+<span class="k">def</span> <span class="nf">get_table</span><span class="p">(</span><span class="n">wbook</span><span class="p">:</span> <span class="n">oxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">,</span> <span class="n">sheet_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">CellType</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reads an Excel table as a nested list.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        wbook: The workbook object.</span>
+<span class="sd">        sheet_name: Name of the Excel worksheet containing the table.</span>
+<span class="sd">        name: Name of the Excel table to read.</span>
+
+<span class="sd">    Returns: A nested list containing the named range&#39;s values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">worksheet</span> <span class="o">=</span> <span class="n">wbook</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
+    <span class="n">cell_range</span> <span class="o">=</span> <span class="n">worksheet</span><span class="p">[</span><span class="n">worksheet</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">ref</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[[</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">r</span><span class="p">]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">cell_range</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="remove_table_filters">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.excel.html#histopath_bim_des.excel.remove_table_filters">[docs]</a>
+<span class="k">def</span> <span class="nf">remove_table_filters</span><span class="p">(</span><span class="n">table</span><span class="p">:</span> <span class="n">Table</span><span class="p">,</span> <span class="n">ws</span><span class="p">:</span> <span class="n">Worksheet</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Remove filters from an Excel table.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        table: The table to alter.</span>
+<span class="sd">        ws: The worksheet in which the table is to be inserted.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># https://stackoverflow.com/questions/62212940/</span>
+
+    <span class="c1"># Only remove filters if there is a header</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">table</span><span class="o">.</span><span class="n">headerRowCount</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Initialize table if not done (from WorksheetWriter.write_tables)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">table</span><span class="o">.</span><span class="n">tableColumns</span><span class="p">:</span>
+        <span class="n">min_col</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">range_boundaries</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">ref</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_col</span><span class="p">,</span> <span class="n">max_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="n">TableColumn</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Column</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">table</span><span class="o">.</span><span class="n">tableColumns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">autoFilter</span> <span class="o">=</span> <span class="n">AutoFilter</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">ref</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="n">ws</span><span class="p">[</span><span class="n">table</span><span class="o">.</span><span class="n">ref</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">table</span><span class="o">.</span><span class="n">tableColumns</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">cell</span><span class="o">.</span><span class="n">data_type</span> <span class="o">!=</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
+                    <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;File may not be readable: column headings must be strings.&quot;</span><span class="p">)</span>
+                <span class="n">col</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;Column headings are missing, file may not be readable&quot;</span><span class="p">)</span>
+
+    <span class="n">filter_columns</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">autoFilter</span><span class="o">.</span><span class="n">filterColumn</span>
+    <span class="c1"># clear any current FilterColumns that might be there</span>
+    <span class="n">filter_columns</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">tableColumns</span><span class="p">)):</span>
+        <span class="c1"># ColId of filters is relative to Table, so starts at 0</span>
+        <span class="c1"># Remove filter with hiddenButton=True</span>
+        <span class="n">filter_columns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FilterColumn</span><span class="p">(</span><span class="n">colId</span><span class="o">=</span><span class="n">idx</span><span class="p">,</span> <span class="n">hiddenButton</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="write_table">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.excel.html#histopath_bim_des.excel.write_table">[docs]</a>
+<span class="k">def</span> <span class="nf">write_table</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">,</span>
+    <span class="n">sheet_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Writes a pandas DataFrame to an Excel table in a new worksheet, **replacing**</span>
+<span class="sd">    the existing worksheet if found.  Note that the index is not used;</span>
+<span class="sd">    use `df.reset_index(drop=False, names=&#39;idx&#39;)` to include the DataFrame index.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df: The DataFrame to write.</span>
+<span class="sd">        path: The filepath of the workbook to write to.</span>
+<span class="sd">        sheet_name: The name of the worksheet to write to.</span>
+<span class="sd">        name: The name of the Excel table to create.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Remove worksheet if exists.</span>
+    <span class="c1"># For some reason, we need to save and re-open the worksheet to properly</span>
+    <span class="c1"># remove the existing table.</span>
+    <span class="n">wbook</span> <span class="o">=</span> <span class="n">oxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">sheet_name</span> <span class="ow">in</span> <span class="n">wbook</span><span class="o">.</span><span class="n">sheetnames</span><span class="p">:</span>
+        <span class="c1"># print(f&#39;Deleting existing worksheet {sheet_name}&#39;)</span>
+        <span class="k">del</span> <span class="n">wbook</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
+        <span class="n">wbook</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">wbook</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="n">wbook2</span> <span class="o">=</span> <span class="n">oxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">wbook2</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">sheet_name</span><span class="p">)</span>
+    <span class="n">ws</span> <span class="o">=</span> <span class="n">wbook2</span><span class="p">[</span><span class="n">sheet_name</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">r</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataframe_to_rows</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">start</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">ws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">w</span><span class="p">)</span>
+
+    <span class="n">ft</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span>
+        <span class="n">bold</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">size</span><span class="o">=</span><span class="mi">18</span>
+    <span class="p">)</span>
+    <span class="n">ws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">sheet_name</span><span class="p">)</span>
+    <span class="n">ws</span><span class="p">[</span><span class="s1">&#39;A1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">font</span> <span class="o">=</span> <span class="n">ft</span>
+
+    <span class="n">tab</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">displayName</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">ref</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;$A$2:$B$</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">TableStyleInfo</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;TableStyleLight9&#39;</span><span class="p">,</span>
+        <span class="n">showFirstColumn</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">showLastColumn</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">showRowStripes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">showColumnStripes</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="n">tab</span><span class="o">.</span><span class="n">tableStyleInfo</span> <span class="o">=</span> <span class="n">style</span>
+    <span class="n">remove_table_filters</span><span class="p">(</span><span class="n">tab</span><span class="p">,</span> <span class="n">ws</span><span class="p">)</span>
+
+    <span class="n">ws</span><span class="o">.</span><span class="n">add_table</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="n">wbook2</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">wbook2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

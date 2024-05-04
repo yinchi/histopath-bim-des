@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Configuration &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7026087e"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Simulation and KPI extraction" href="simulation.html" />
+    <link rel="prev" title="BIM-DES integration demo" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Model Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generating-a-runner-times-configuration">Generating a runner times configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Model Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/config.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="model-configuration">
+<h1>Model Configuration<a class="headerlink" href="#model-configuration" title="Link to this heading"></a></h1>
+<p>Parameters for the simulation module are encoded in a <a class="reference internal" href="apidoc/histopath_bim_des.config.config.html#histopath_bim_des.config.config.Config" title="histopath_bim_des.config.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> object. The
+Entity Relationship Diagram for the <a class="reference internal" href="apidoc/histopath_bim_des.config.config.html#histopath_bim_des.config.config.Config" title="histopath_bim_des.config.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> class is shown below (click for full size):</p>
+<p><a class="reference internal" href="_images/Config.erd.png"><img alt="erd" class="align-center" src="_images/Config.erd.png" style="width: 300px;" /></a></p>
+<p>Configurations can be parsed from an Excel worksheet using <a class="reference internal" href="apidoc/histopath_bim_des.config.config.html#histopath_bim_des.config.config.Config.from_workbook" title="histopath_bim_des.config.config.Config.from_workbook"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.from_workbook()</span></code></a>. Example
+worksheets are available in the <code class="docutils literal notranslate"><span class="pre">/assets</span></code> directory of the project, with prefixes <code class="docutils literal notranslate"><span class="pre">config_</span></code>.</p>
+<section id="generating-a-runner-times-configuration">
+<h2>Generating a runner times configuration<a class="headerlink" href="#generating-a-runner-times-configuration" title="Link to this heading"></a></h2>
+<p>To specify a runner times configuration setting for <a class="reference internal" href="apidoc/histopath_bim_des.config.config.html#histopath_bim_des.config.config.Config.from_workbook" title="histopath_bim_des.config.config.Config.from_workbook"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.from_workbook()</span></code></a>, an
+Excel worksheet titled “Runner Times output” is required. An example Python script to generate
+this file is:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">BimModel</span><span class="o">.</span><span class="n">from_ifc</span><span class="p">(</span><span class="s1">&#39;../assets/private/histo.ifc&#39;</span><span class="p">)</span>
+<span class="n">runner_cfg_path</span> <span class="o">=</span> <span class="s1">&#39;../assets/histo.xlsx&#39;</span>  <span class="c1"># base scenario, contains a single sheet &quot;Runner Times&quot;</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">RunnerConfig</span><span class="o">.</span><span class="n">from_excel</span><span class="p">(</span><span class="n">openpyxl</span><span class="o">.</span><span class="n">load_workbook</span><span class="p">(</span><span class="n">runner_cfg_path</span><span class="p">,</span> <span class="n">data_only</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">rt</span> <span class="o">=</span> <span class="n">runner_times</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">cfg</span><span class="p">)</span>
+<span class="n">excel</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">runner_cfg_path</span><span class="p">,</span> <span class="s1">&#39;Runner Times output&#39;</span><span class="p">,</span> <span class="s1">&#39;tableRunnerTimes&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The “Runner Times” and “Runner Times output” worksheets can then be pasted into a full configuration
+file.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="BIM-DES integration demo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="simulation.html" class="btn btn-neutral float-right" title="Simulation and KPI extraction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

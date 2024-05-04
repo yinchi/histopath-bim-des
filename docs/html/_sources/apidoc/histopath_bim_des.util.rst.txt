@@ -1,0 +1,7 @@
+histopath\_bim\_des.util module
+===============================
+
+.. automodule:: histopath_bim_des.util
+   :members:
+   :undoc-members:
+   :show-inheritance:

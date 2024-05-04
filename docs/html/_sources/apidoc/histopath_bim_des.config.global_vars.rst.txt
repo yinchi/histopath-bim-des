@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.global\_vars module
+==============================================
+
+.. automodule:: histopath_bim_des.config.global_vars
+   :members:
+   :undoc-members:
+   :show-inheritance:

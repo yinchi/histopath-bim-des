@@ -3,6 +3,7 @@ build-docs() {
     poetry run sphinx-apidoc -fe -o docs/apidoc/ histopath_bim_des/
     cd docs
     poetry run make html
+    cp -r _build/html html
     popd
 }
 

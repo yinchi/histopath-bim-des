@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.process.core &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.process.core</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.process.core</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Common definitions for salabim processes.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">TypeVar</span>
+
+<span class="kn">import</span> <span class="nn">salabim</span> <span class="k">as</span> <span class="nn">sim</span>
+
+<span class="kn">from</span> <span class="nn">..specimens</span> <span class="kn">import</span> <span class="n">Batch</span><span class="p">,</span> <span class="n">Component</span><span class="p">,</span> <span class="n">Priority</span><span class="p">,</span> <span class="n">Specimen</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">ARR_RATE_INTERVAL_HOURS</span><span class="p">,</span> <span class="n">RESOURCE_ALLOCATION_INTERVAL_HOURS</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">..config.arrivals</span> <span class="kn">import</span> <span class="n">ArrivalSchedule</span>
+    <span class="kn">from</span> <span class="nn">..config.resources</span> <span class="kn">import</span> <span class="n">ResourceSchedule</span>
+    <span class="kn">from</span> <span class="nn">..model</span> <span class="kn">import</span> <span class="n">Model</span>
+
+
+<div class="viewcode-block" id="ArrivalGenerator">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ArrivalGenerator">[docs]</a>
+<span class="k">class</span> <span class="nc">ArrivalGenerator</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Specimen arrival generator process.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        iterator (itertools.cycle):</span>
+<span class="sd">            Iterator yielding the arrival rate for each hourly period.</span>
+<span class="sd">        cls_args (dict[str, typing.Any]):</span>
+<span class="sd">            Arguments passed to the :py:class:`~histopath.specimens.Specimen` constructor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+            <span class="n">schedule</span><span class="p">:</span> <span class="s1">&#39;ArrivalSchedule&#39;</span><span class="p">,</span>
+            <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            args (dict[str, typing.Any]):</span>
+<span class="sd">                Positional arguments passed to the `super()` constructor.</span>
+<span class="sd">            schedule (ArrivalSchedule): The arrival schedule as a dataclass instance.</span>
+<span class="sd">            env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">            kwargs (dict[str, typing.Any]):</span>
+<span class="sd">                Additional keyword arguments. Arguments not consumed by the</span>
+<span class="sd">                `super()` constructor become `self.cls_args`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">rates</span><span class="o">=</span><span class="n">schedule</span><span class="o">.</span><span class="n">rates</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ArrivalGenerator.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ArrivalGenerator.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cls_args</span> <span class="o">=</span> <span class="n">kwargs</span></div>
+
+
+<div class="viewcode-block" id="ArrivalGenerator.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ArrivalGenerator.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The generator process. Creates a sub-generator for</span>
+<span class="sd">        each interval (of length `ARR_RATE_INTERVAL_HOURS`) with the specified rate.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterator</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">sim</span><span class="o">.</span><span class="n">ComponentGenerator</span><span class="p">(</span>
+                    <span class="n">Specimen</span><span class="p">,</span>
+                    <span class="n">generator_name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s1">_sub&#39;</span><span class="p">,</span>
+                    <span class="n">duration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">hours</span><span class="p">(</span><span class="n">ARR_RATE_INTERVAL_HOURS</span><span class="p">),</span>
+                    <span class="n">iat</span><span class="o">=</span><span class="n">sim</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">randomstream</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">rng</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">hours</span><span class="p">(</span><span class="n">ARR_RATE_INTERVAL_HOURS</span><span class="p">))</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ResourceScheduler">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ResourceScheduler">[docs]</a>
+<span class="k">class</span> <span class="nc">ResourceScheduler</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Component</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource scheduler class. The resource level is set every</span>
+<span class="sd">    `RESOURCE_ALLOCATION_INTERVAL_HOURS` hours. The resource level</span>
+<span class="sd">    is set to 0 if the day entry in the `ResourceSchedule` is 0.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        resource (salabim.Resource): The resource to control the allocation of.</span>
+<span class="sd">        schedule (ResourceSchedule): The resource schedule in dataclass form.</span>
+<span class="sd">        env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                 <span class="n">resource</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Resource</span><span class="p">,</span>
+                 <span class="n">schedule</span><span class="p">:</span> <span class="s1">&#39;ResourceSchedule&#39;</span><span class="p">,</span>
+                 <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            args (dict[str, typing.Any]):</span>
+<span class="sd">                Positional arguments passed to the `super()` constructor.</span>
+<span class="sd">            resource (salabim.Resource)</span>
+<span class="sd">            schedule (ResourceSchedule)</span>
+<span class="sd">            env (Model)</span>
+<span class="sd">            kwargs (dict[str, typing.Any]):</span>
+<span class="sd">                Additional keyword arguments passed to the `super()` constructor.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># super().__init__ consumes args and a bunch of kwargs and passes the rest to setup()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">resource</span><span class="o">=</span><span class="n">resource</span><span class="p">,</span> <span class="n">schedule</span><span class="o">=</span><span class="n">schedule</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResourceScheduler.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ResourceScheduler.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+              <span class="n">resource</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Resource</span><span class="p">,</span> <span class="n">schedule</span><span class="p">:</span> <span class="s1">&#39;ResourceSchedule&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span> <span class="o">=</span> <span class="n">resource</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="n">schedule</span></div>
+
+
+<div class="viewcode-block" id="ResourceScheduler.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.ResourceScheduler.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Change the resource capacity based on the schedule.</span>
+<span class="sd">        Capacities are given in 30-min intervals.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">day_flag</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="o">.</span><span class="n">day_flags</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">day_flag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">set_capacity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">days</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">allocation</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">schedule</span><span class="o">.</span><span class="n">allocation</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">allocation</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">capacity</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">set_capacity</span><span class="p">(</span><span class="n">allocation</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">hours</span><span class="p">(</span><span class="n">RESOURCE_ALLOCATION_INTERVAL_HOURS</span><span class="p">))</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="BaseProcess">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BaseProcess">[docs]</a>
+<span class="k">class</span> <span class="nc">BaseProcess</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Component</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A process with an in-queue. Typically does work on Components</span>
+<span class="sd">    arriving to the in-queue and pushes completed components to another</span>
+<span class="sd">    process&#39; in-queue.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        in_queue (salabim.Store): The in-queue of the process from which entities are taken.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseProcess.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BaseProcess.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pylint:disable=arguments-differ</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_queue</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Store</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="si">}</span><span class="s1">.in_queue&#39;</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BaseProcess.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BaseProcess.process">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process launched by the simulation upon instantiation.&quot;&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.Process">[docs]</a>
+<span class="k">class</span> <span class="nc">Process</span><span class="p">(</span><span class="n">BaseProcess</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A looped processed that takes one entity from its in-queue at a time</span>
+<span class="sd">    and activates it.</span>
+
+<span class="sd">    For example, `Process(name=&#39;do_this&#39;, Specimen, do_this)` creates</span>
+<span class="sd">    `Specimen.do_this = do_this` and calls it for every arriving `Specimen`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        in_queue (salabim.Store): The in-queue of the process from which entities are taken.</span>
+<span class="sd">        in_type (typing.Type): The type of the entities to be processed.</span>
+<span class="sd">        fn (typing.Callable): The function to be activated by each new arrival to the process.</span>
+<span class="sd">        env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">in_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">,</span>
+            <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="kc">None</span><span class="p">],</span> <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">in_type</span><span class="o">=</span><span class="n">in_type</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Process.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.Process.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span>  <span class="c1"># pylint:disable=arguments-differ</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">in_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="kc">None</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_type</span> <span class="o">=</span> <span class="n">in_type</span>
+        <span class="c1"># print(self.in_type, self.name())</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_type</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">fn</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Process.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.Process.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_store</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_queue</span><span class="p">)</span>
+            <span class="n">entity</span><span class="p">:</span> <span class="n">Component</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_store_item</span><span class="p">()</span>
+            <span class="n">entity</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="n">process</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">())</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="register_process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.register_process">[docs]</a>
+<span class="k">def</span> <span class="nf">register_process</span><span class="p">(</span><span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span> <span class="n">in_type</span><span class="p">:</span> <span class="n">Type</span><span class="p">,</span> <span class="n">fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Component</span><span class="p">],</span> <span class="kc">None</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Register a process to a simulation environment.&quot;&quot;&quot;</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span>
+        <span class="n">fn</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">in_type</span><span class="o">=</span><span class="n">in_type</span><span class="p">,</span> <span class="n">fn</span><span class="o">=</span><span class="n">fn</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="n">bound</span><span class="o">=</span><span class="n">Component</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="BatchingProcess">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BatchingProcess">[docs]</a>
+<span class="k">class</span> <span class="nc">BatchingProcess</span><span class="p">(</span><span class="n">BaseProcess</span><span class="p">,</span> <span class="n">Generic</span><span class="p">[</span><span class="n">C</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes `batch_size` entites from `in_queue` and inserts a single</span>
+<span class="sd">    instance of `out_type` to `env.processes[out_process].in_queue`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        batch_size (int | typing.Callable[[], int]):</span>
+<span class="sd">            The batch size or its distribution.  Can take `salabim` distributions or any</span>
+<span class="sd">            other type with ``__call__`` implemented.</span>
+<span class="sd">        in_queue (salabim.Store): The in-queue of the process from which entities are taken.</span>
+<span class="sd">        out_process (str): The name of the process receiving the batch.</span>
+<span class="sd">        env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                 <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">int</span><span class="p">],</span>
+                 <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">out_process</span><span class="o">=</span><span class="n">out_process</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BatchingProcess.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BatchingProcess.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>  <span class="c1"># pylint:disable=arguments-differ</span>
+              <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[[],</span> <span class="nb">int</span><span class="p">],</span> <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_process</span> <span class="o">=</span> <span class="n">out_process</span></div>
+
+
+<div class="viewcode-block" id="BatchingProcess.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.BatchingProcess.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">()</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="n">Batch</span><span class="p">[</span><span class="n">C</span><span class="p">](</span><span class="n">env</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">):</span>
+                <span class="c1"># FUTURE: implement fail_duration support for partial batching</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">from_store</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_queue</span><span class="p">)</span>
+                <span class="n">item</span><span class="p">:</span> <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_store_item</span><span class="p">()</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">batch</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+            <span class="n">batch</span><span class="o">.</span><span class="n">enter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">out_process</span><span class="p">]</span><span class="o">.</span><span class="n">in_queue</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="CollationProcess">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.CollationProcess">[docs]</a>
+<span class="k">class</span> <span class="nc">CollationProcess</span><span class="p">(</span><span class="n">BaseProcess</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes entities from `in_queue` and places them into a pool.</span>
+<span class="sd">    Once all entities with the same parent are found (based on comparing</span>
+<span class="sd">    with a counter), the parent is inserted into</span>
+<span class="sd">    `env.processes[out_process].in_queue`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        counter_name (str):</span>
+<span class="sd">            The name of the counter in the parent entity defining</span>
+<span class="sd">            the number of child entities.</span>
+<span class="sd">        in_queue (salabim.Store): The in-queue of the process from which entities are taken.</span>
+<span class="sd">        out_process (str):</span>
+<span class="sd">            The name of the process receiving the reconstituted parent entity.</span>
+<span class="sd">        env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                 <span class="n">counter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">counter_name</span><span class="o">=</span><span class="n">counter_name</span><span class="p">,</span> <span class="n">out_process</span><span class="o">=</span><span class="n">out_process</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CollationProcess.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.CollationProcess.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="n">counter_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">counter_name</span> <span class="o">=</span> <span class="n">counter_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_process</span> <span class="o">=</span> <span class="n">out_process</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Component</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="CollationProcess.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.CollationProcess.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_store</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_queue</span><span class="p">)</span>
+            <span class="n">item</span><span class="p">:</span> <span class="n">Component</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_store_item</span><span class="p">()</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+            <span class="c1"># Check counter to see if we have all items in the group</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">specimen_data</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">Specimen</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">item</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">data</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">counter_name</span><span class="p">]:</span>
+                <span class="n">item</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">enter_sorted</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">out_process</span><span class="p">]</span><span class="o">.</span><span class="n">in_queue</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">prio</span><span class="p">)</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="RunnerDurations">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.RunnerDurations">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">RunnerDurations</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Durations for collecting/unloading the delivery batch and travelling to/from the</span>
+<span class="sd">    destination.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">collect</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">sim</span><span class="o">.</span><span class="n">Distribution</span>  <span class="c1"># time to collect delivery batch</span>
+    <span class="n">out</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">sim</span><span class="o">.</span><span class="n">Distribution</span>     <span class="c1"># outbound trip duration</span>
+    <span class="n">unload</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">sim</span><span class="o">.</span><span class="n">Distribution</span>  <span class="c1"># time to unload delivery batch</span>
+    <span class="n">retur</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">sim</span><span class="o">.</span><span class="n">Distribution</span>     <span class="c1"># return trip duration</span></div>
+
+
+
+<div class="viewcode-block" id="DeliveryProcess">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.DeliveryProcess">[docs]</a>
+<span class="k">class</span> <span class="nc">DeliveryProcess</span><span class="p">(</span><span class="n">BaseProcess</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes entities/batches from the `in_queue` and places them</span>
+<span class="sd">    in `env.processes[out_process].in_queue`, after some delay.</span>
+<span class="sd">    A resource is required to move the entity/batch and requires</span>
+<span class="sd">    time to travel between the locations associated with the two</span>
+<span class="sd">    processes.  Batches are unbatched upon arrival.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        runner (salabim.Resource):</span>
+<span class="sd">            The resource (e.g. staff) responsible for the delivery.</span>
+<span class="sd">        durations (RunnerDurations):</span>
+<span class="sd">            Durations for collecting/unloading the delivery batch and travelling to/from the</span>
+<span class="sd">            destination.</span>
+<span class="sd">        out_process (str):</span>
+<span class="sd">            The name of the process receiving the delivery.</span>
+<span class="sd">        env (Model): The simulation model this arrival generator is attached to.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                 <span class="n">runner</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Resource</span><span class="p">,</span>
+                 <span class="n">durations</span><span class="p">:</span> <span class="n">RunnerDurations</span><span class="p">,</span>
+                 <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                 <span class="n">env</span><span class="p">:</span> <span class="s1">&#39;Model&#39;</span><span class="p">,</span>
+                 <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">runner</span><span class="o">=</span><span class="n">runner</span><span class="p">,</span> <span class="n">durations</span><span class="o">=</span><span class="n">durations</span><span class="p">,</span>
+                         <span class="n">out_process</span><span class="o">=</span><span class="n">out_process</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DeliveryProcess.setup">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.DeliveryProcess.setup">[docs]</a>
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span>  <span class="c1"># pylint: disable=arguments-differ</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">runner</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Resource</span><span class="p">,</span>
+        <span class="n">durations</span><span class="p">:</span> <span class="n">RunnerDurations</span><span class="p">,</span>
+        <span class="n">out_process</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set up the component, called immediately after initialisation.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runner</span> <span class="o">=</span> <span class="n">runner</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">durations</span> <span class="o">=</span> <span class="n">durations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_process</span> <span class="o">=</span> <span class="n">out_process</span></div>
+
+
+<div class="viewcode-block" id="DeliveryProcess.process">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.process.core.html#histopath_bim_des.process.core.DeliveryProcess.process">[docs]</a>
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="p">:</span> <span class="n">Model</span>
+        <span class="n">out_queue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">processes</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">out_process</span><span class="p">]</span><span class="o">.</span><span class="n">in_queue</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_store</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">in_queue</span><span class="p">)</span>
+            <span class="n">entity</span><span class="p">:</span> <span class="n">Component</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_store_item</span><span class="p">()</span>
+
+            <span class="c1"># Deliveries of single items are given the priority of that item (expected to be URGENT)</span>
+            <span class="n">delivery_prio</span> <span class="o">=</span> <span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">prio</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">Batch</span><span class="p">)</span>
+                             <span class="k">else</span> <span class="n">Priority</span><span class="o">.</span><span class="n">ROUTINE</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">runner</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">delivery_prio</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">durations</span><span class="o">.</span><span class="n">collect</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">durations</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">durations</span><span class="o">.</span><span class="n">unload</span><span class="p">)</span>
+
+            <span class="c1"># Unload delivery items</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="n">Batch</span><span class="p">):</span>
+                <span class="n">item</span><span class="p">:</span> <span class="n">Component</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+                    <span class="n">item</span><span class="o">.</span><span class="n">enter_sorted</span><span class="p">(</span>
+                        <span class="n">out_queue</span><span class="p">,</span>
+                        <span class="n">priority</span><span class="o">=</span><span class="n">item</span><span class="o">.</span><span class="n">prio</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">enter_sorted</span><span class="p">(</span>
+                    <span class="n">out_queue</span><span class="p">,</span>
+                    <span class="n">priority</span><span class="o">=</span><span class="n">entity</span><span class="o">.</span><span class="n">prio</span><span class="p">)</span>
+
+            <span class="c1"># print(f&#39;Delivered {self.name()} to {out_queue.name()}&#39;)</span>
+
+            <span class="c1"># return runner to origin station</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hold</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">durations</span><span class="o">.</span><span class="n">retur</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

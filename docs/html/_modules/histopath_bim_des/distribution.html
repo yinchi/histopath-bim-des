@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.distribution &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.distribution</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.distribution</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Random distributions for the simulation model.</span>
+
+<span class="sd">This module overrides the `salabim.Constant` and</span>
+<span class="sd">`salabim.Triangular` classes to provide better</span>
+<span class="sd">string representations, and adds a PERT distribution.</span>
+
+<span class="sd">See: https://en.wikipedia.org/wiki/PERT_distribution</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Self</span><span class="p">,</span> <span class="n">Callable</span>
+
+<span class="kn">import</span> <span class="nn">salabim</span> <span class="k">as</span> <span class="nn">sim</span>
+
+
+<div class="viewcode-block" id="Constant">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.Constant">[docs]</a>
+<span class="k">class</span> <span class="nc">Constant</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Constant</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Constant distribution.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        _value (float)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Constant(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_value</span><span class="si">}</span><span class="s1">, time_unit=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+
+<div class="viewcode-block" id="Tri">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.Tri">[docs]</a>
+<span class="k">class</span> <span class="nc">Tri</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Triangular</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Triangular distribution.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        _low: Minimum of the distribution</span>
+<span class="sd">        _mode: Mode of the distribution. If None, replaced with the mean of `_low` and `_high`.</span>
+<span class="sd">        _high:</span>
+<span class="sd">            Maximum of the distribution. If None, replaced with `_min`, thus</span>
+<span class="sd">            forming a constant distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+            <span class="n">mode</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">time_unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">randomstream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">env</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Environment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Reorder low,high,mode parameters</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">time_unit</span><span class="p">,</span> <span class="n">randomstream</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Triangular(low=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_low</span><span class="si">}</span><span class="s2">, mode=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="si">}</span><span class="s2">, high=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_high</span><span class="si">}</span><span class="s2">, &quot;</span>\
+            <span class="sa">f</span><span class="s2">&quot;time_unit=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="PERT">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT">[docs]</a>
+<span class="k">class</span> <span class="nc">PERT</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Triangular</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;PERT distribution.</span>
+
+<span class="sd">    A three-point distribution with more probability mass around the mode than the</span>
+<span class="sd">    triangular distribution.  The mean of the distribution is</span>
+<span class="sd">    `(_low + _shape * _mode + _high) / (_shape + 2)`.</span>
+<span class="sd">    By default, `_shape = 4`.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        _low: Minimum of the distribution.</span>
+<span class="sd">        _mode: Mode of the distribution. If None, replaced with the mean of `_low` and `_high`.</span>
+<span class="sd">        _high:</span>
+<span class="sd">            Maximum of the distribution. If None, replaced with `_min`,</span>
+<span class="sd">            thus forming a constant distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">low</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">high</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">time_unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">randomstream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">env</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Environment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">time_unit</span><span class="p">,</span> <span class="n">randomstream</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">=</span> <span class="mi">4</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_range</span> <span class="o">=</span> <span class="n">high</span> <span class="o">-</span> <span class="n">low</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">*</span> <span class="p">(</span><span class="n">mode</span> <span class="o">-</span> <span class="n">low</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_beta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">*</span> <span class="p">(</span><span class="n">high</span> <span class="o">-</span> <span class="n">mode</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mean</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">*</span> <span class="n">mode</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;PERT(low=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_low</span><span class="si">}</span><span class="s2">, mode=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="si">}</span><span class="s2">, high=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_high</span><span class="si">}</span><span class="s2">, &quot;</span>\
+            <span class="sa">f</span><span class="s2">&quot;shape=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="si">}</span><span class="s2">, time_unit=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+<div class="viewcode-block" id="PERT.print_info">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.print_info">[docs]</a>
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_str</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">TextIO</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Print info about the distribution.&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;PERT &quot;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)))</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  low=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_low</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  high=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_high</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  mode=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  shape=&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">))</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  randomstream=&quot;</span> <span class="o">+</span> <span class="nb">hex</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">randomstream</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">sim</span><span class="o">.</span><span class="n">return_or_print</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">as_str</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PERT.sample">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.sample">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">randomstream</span><span class="o">.</span><span class="n">betavariate</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_low</span> <span class="o">+</span> <span class="n">beta</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_beta</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range</span>
+        <span class="k">return</span> <span class="n">val</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_unit_factor</span></div>
+
+
+<div class="viewcode-block" id="PERT.mean">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.mean">[docs]</a>
+    <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mean</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_unit_factor</span></div>
+</div>
+
+
+
+<span class="n">Distribution</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">Constant</span><span class="p">,</span> <span class="n">Tri</span><span class="p">,</span> <span class="n">PERT</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;A continuous distribution (constant, triangular, or PERT).&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="IntPERT">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT">[docs]</a>
+<span class="k">class</span> <span class="nc">IntPERT</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Discretized PERT distribution.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">low</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">high</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">randomstream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">env</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Environment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Minimum of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mode of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Maximum of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pert</span> <span class="o">=</span> <span class="n">PERT</span><span class="p">(</span><span class="n">low</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">-</span><span class="n">mode</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">randomstream</span><span class="o">=</span><span class="n">randomstream</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Underlying continuous PERT distribution, i.e.</span>
+<span class="sd">        `PERT(low-mode-0.5, 0, high-mode+0.5)`.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IntPERT.sample">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.sample">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sample the distribution.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># Round towards 0 and add the mode</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pert</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;IntPERT(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+
+<div class="viewcode-block" id="IntTri">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri">[docs]</a>
+<span class="k">class</span> <span class="nc">IntTri</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Discretized Triangular distribution.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">low</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">high</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">randomstream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">env</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Environment</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">low</span> <span class="o">=</span> <span class="n">low</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Minimum of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">mode</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mode of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">=</span> <span class="n">high</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Maximum of the distribution.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">tri</span> <span class="o">=</span> <span class="n">Tri</span><span class="p">(</span><span class="n">low</span><span class="o">-</span><span class="n">mode</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">-</span><span class="n">mode</span><span class="o">+</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">randomstream</span><span class="o">=</span><span class="n">randomstream</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Underlying continuous Tri distribution, i.e.</span>
+<span class="sd">        `Tri(low-mode-0.5, 0, high-mode+0.5)`.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IntTri.sample">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.sample">[docs]</a>
+    <span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sample the distribution.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="c1"># Round towards 0 and add the mode</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tri</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;IntPERT(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">high</span><span class="si">}</span><span class="s1">)&#39;</span></div>
+
+
+
+<div class="viewcode-block" id="IntConstant">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntConstant">[docs]</a>
+<span class="k">class</span> <span class="nc">IntConstant</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">Constant</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Alias of sim.Constant for integers.&quot;&quot;&quot;</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">randomstream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="p">:</span> <span class="n">sim</span><span class="o">.</span><span class="n">Environment</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">randomstream</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+
+    <span class="n">sample</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Self</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span>
+    <span class="fm">__call__</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Self</span><span class="p">],</span> <span class="nb">int</span><span class="p">]</span></div>
+
+
+
+<span class="n">IntDistribution</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">IntConstant</span><span class="p">,</span> <span class="n">IntTri</span><span class="p">,</span> <span class="n">IntPERT</span><span class="p">]</span>
+<span class="sd">&quot;&quot;&quot;A continuous distribution (constant, triangular, or PERT).&quot;&quot;&quot;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

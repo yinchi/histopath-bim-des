@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.runners module
+=========================================
+
+.. automodule:: histopath_bim_des.config.runners
+   :members:
+   :undoc-members:
+   :show-inheritance:

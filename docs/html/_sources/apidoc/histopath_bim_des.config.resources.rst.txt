@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.resources module
+===========================================
+
+.. automodule:: histopath_bim_des.config.resources
+   :members:
+   :undoc-members:
+   :show-inheritance:

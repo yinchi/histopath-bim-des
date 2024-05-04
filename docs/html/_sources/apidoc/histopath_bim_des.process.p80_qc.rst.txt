@@ -1,0 +1,7 @@
+histopath\_bim\_des.process.p80\_qc module
+==========================================
+
+.. automodule:: histopath_bim_des.process.p80_qc
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,32 @@
+histopath\_bim\_des package
+===========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   histopath_bim_des.config
+   histopath_bim_des.process
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   histopath_bim_des.bim
+   histopath_bim_des.distribution
+   histopath_bim_des.excel
+   histopath_bim_des.model
+   histopath_bim_des.specimens
+   histopath_bim_des.util
+
+Module contents
+---------------
+
+.. automodule:: histopath_bim_des
+   :members:
+   :undoc-members:
+   :show-inheritance:

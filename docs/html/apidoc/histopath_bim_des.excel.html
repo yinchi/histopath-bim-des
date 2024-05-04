@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.excel module &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.model module" href="histopath_bim_des.model.html" />
+    <link rel="prev" title="histopath_bim_des.distribution module" href="histopath_bim_des.distribution.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="histopath_bim_des.html">histopath_bim_des package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="histopath_bim_des.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html">histopath_bim_des.bim module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html">histopath_bim_des.distribution module</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">histopath_bim_des.excel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.excel.get_name"><code class="docutils literal notranslate"><span class="pre">get_name()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.excel.get_table"><code class="docutils literal notranslate"><span class="pre">get_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.excel.remove_table_filters"><code class="docutils literal notranslate"><span class="pre">remove_table_filters()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#histopath_bim_des.excel.write_table"><code class="docutils literal notranslate"><span class="pre">write_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html">histopath_bim_des.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html">histopath_bim_des.specimens module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.util.html">histopath_bim_des.util module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.html">histopath_bim_des package</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.excel module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.excel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-histopath_bim_des.excel">
+<span id="histopath-bim-des-excel-module"></span><h1>histopath_bim_des.excel module<a class="headerlink" href="#module-histopath_bim_des.excel" title="Link to this heading"></a></h1>
+<p>Functions for reading Excel data</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.excel.get_name">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.excel.</span></span><span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wbook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.workbook.html#openpyxl.workbook.workbook.Workbook" title="(in openpyxl v3.1)"><span class="pre">Workbook</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.12)"><span class="pre">datetime</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.12)"><span class="pre">datetime</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/histopath_bim_des/excel.html#get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.excel.get_name" title="Link to this definition"></a></dt>
+<dd><p>Read an Excel named range as a single value or NumPy array.
+Arrays are flattened if possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wbook</strong> – The workbook object.</p></li>
+<li><p><strong>name</strong> – Name of the Excel range to read.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: A single value, or a nested list containing the named range’s values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.excel.get_table">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.excel.</span></span><span class="sig-name descname"><span class="pre">get_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wbook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.workbook.html#openpyxl.workbook.workbook.Workbook" title="(in openpyxl v3.1)"><span class="pre">Workbook</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.12)"><span class="pre">datetime</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/histopath_bim_des/excel.html#get_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.excel.get_table" title="Link to this definition"></a></dt>
+<dd><p>Reads an Excel table as a nested list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wbook</strong> – The workbook object.</p></li>
+<li><p><strong>sheet_name</strong> – Name of the Excel worksheet containing the table.</p></li>
+<li><p><strong>name</strong> – Name of the Excel table to read.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Returns: A nested list containing the named range’s values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.excel.remove_table_filters">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.excel.</span></span><span class="sig-name descname"><span class="pre">remove_table_filters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.table.html#openpyxl.worksheet.table.Table" title="(in openpyxl v3.1)"><span class="pre">Table</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ws</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet" title="(in openpyxl v3.1)"><span class="pre">Worksheet</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/excel.html#remove_table_filters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.excel.remove_table_filters" title="Link to this definition"></a></dt>
+<dd><p>Remove filters from an Excel table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>table</strong> – The table to alter.</p></li>
+<li><p><strong>ws</strong> – The worksheet in which the table is to be inserted.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.excel.write_table">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.excel.</span></span><span class="sig-name descname"><span class="pre">write_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.2.2)"><span class="pre">DataFrame</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike" title="(in Python v3.12)"><span class="pre">PathLike</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/excel.html#write_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.excel.write_table" title="Link to this definition"></a></dt>
+<dd><p>Writes a pandas DataFrame to an Excel table in a new worksheet, <strong>replacing</strong>
+the existing worksheet if found.  Note that the index is not used;
+use <cite>df.reset_index(drop=False, names=’idx’)</cite> to include the DataFrame index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – The DataFrame to write.</p></li>
+<li><p><strong>path</strong> – The filepath of the workbook to write to.</p></li>
+<li><p><strong>sheet_name</strong> – The name of the worksheet to write to.</p></li>
+<li><p><strong>name</strong> – The name of the Excel table to create.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="histopath_bim_des.distribution.html" class="btn btn-neutral float-left" title="histopath_bim_des.distribution module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.model.html" class="btn btn-neutral float-right" title="histopath_bim_des.model module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

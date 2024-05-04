@@ -1,0 +1,7 @@
+histopath\_bim\_des.config.tasks module
+=======================================
+
+.. automodule:: histopath_bim_des.config.tasks
+   :members:
+   :undoc-members:
+   :show-inheritance:

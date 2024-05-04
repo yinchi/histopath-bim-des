@@ -1,0 +1,7 @@
+histopath\_bim\_des.process.p70\_scanning module
+================================================
+
+.. automodule:: histopath_bim_des.process.p70_scanning
+   :members:
+   :undoc-members:
+   :show-inheritance:

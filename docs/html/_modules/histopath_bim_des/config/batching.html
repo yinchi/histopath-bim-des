@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.config.batching &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.config.batching</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.config.batching</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Batching configuration module for the histopath simulation model.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pydantic</span> <span class="k">as</span> <span class="nn">pyd</span>
+<span class="kn">from</span> <span class="nn">openpyxl</span> <span class="kn">import</span> <span class="n">Workbook</span>
+
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">excel</span>
+
+
+<div class="viewcode-block" id="BatchSizes">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.config.batching.html#histopath_bim_des.config.batching.BatchSizes">[docs]</a>
+<span class="k">class</span> <span class="nc">BatchSizes</span><span class="p">(</span><span class="n">pyd</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information for tracking batch sizes in a model.  This is the number of</span>
+<span class="sd">    specimens, blocks, or slides in a machine or delivery batch.  Batches in the model</span>
+<span class="sd">    are homogeneous, i.e. all items in a batch are of the same type.</span>
+
+<span class="sd">    The field titles in this class MUST match the rows of the Excel input file</span>
+<span class="sd">    (&quot;Batch Sizes&quot; tab).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_reception_to_cut_up</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (reception to cut-up)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, reception to cut-up (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_cut_up_to_processing</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (cut-up to processing)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, cut-up to processing (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_processing_to_microtomy</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (processing to microtomy)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, processing to microtomy (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_microtomy_to_staining</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (microtomy to staining)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, microtomy to staining (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_staining_to_labelling</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (staining to labelling)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, staining to labelling (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_labelling_to_scanning</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (labelling to scanning)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, labelling to scanning (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">deliver_scanning_to_qc</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Delivery (scanning to QC)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Delivery batch size, scanning to QC (specimens).&quot;&quot;&quot;</span>
+
+    <span class="n">bone_station</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Bone station (blocks)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bone station (machine) batch size (blocks).&quot;&quot;&quot;</span>
+
+    <span class="n">processing_regular</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span>\
+        <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Processing machine (regular blocks)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Processing machine batch size, regular blocks.&quot;&quot;&quot;</span>
+
+    <span class="n">processing_megas</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Processing machine (mega blocks)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Processing machine batch size, mega blocks.&quot;&quot;&quot;</span>
+
+    <span class="n">staining_regular</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Staining (regular slides)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Staining machine batch size, regular slides.&quot;&quot;&quot;</span>
+
+    <span class="n">staining_megas</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Staining (mega slides)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Staining machine batch size, mega slides.&quot;&quot;&quot;</span>
+
+    <span class="n">digital_scanning_regular</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Scanning (regular slides)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scanning machine batch size, regular slides.&quot;&quot;&quot;</span>
+
+    <span class="n">digital_scanning_megas</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">PositiveInt</span> <span class="o">=</span> <span class="n">pyd</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Scanning (mega slides)&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scanning machine batch size, mega slides.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BatchSizes.from_workbook">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.config.batching.html#histopath_bim_des.config.batching.BatchSizes.from_workbook">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_workbook</span><span class="p">(</span><span class="n">wbook</span><span class="p">:</span> <span class="n">Workbook</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BatchSizes&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Construct a dataclass instance from an Excel workbook.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            wbook: The Excel workbook to parse.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The parsed dataclass instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">batch_sizes_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">table</span> <span class="o">:=</span> <span class="n">excel</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="n">wbook</span><span class="p">,</span> <span class="s1">&#39;Batch Sizes&#39;</span><span class="p">,</span> <span class="s1">&#39;BatchSizes&#39;</span><span class="p">)</span>
+            <span class="p">)[</span><span class="mi">1</span><span class="p">:],</span>
+            <span class="n">columns</span><span class="o">=</span><span class="n">table</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Batch Name&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BatchSizes</span><span class="o">.</span><span class="n">model_validate</span><span class="p">({</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">batch_sizes_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="s1">&#39;Size&#39;</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">BatchSizes</span><span class="o">.</span><span class="n">model_fields</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">})</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

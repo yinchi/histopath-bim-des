@@ -1,0 +1,25 @@
+histopath\_bim\_des.config package
+==================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   histopath_bim_des.config.arrivals
+   histopath_bim_des.config.batching
+   histopath_bim_des.config.config
+   histopath_bim_des.config.distributions
+   histopath_bim_des.config.global_vars
+   histopath_bim_des.config.resources
+   histopath_bim_des.config.runners
+   histopath_bim_des.config.tasks
+
+Module contents
+---------------
+
+.. automodule:: histopath_bim_des.config
+   :members:
+   :undoc-members:
+   :show-inheritance:

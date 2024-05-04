@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.config.tasks module &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.process package" href="histopath_bim_des.process.html" />
+    <link rel="prev" title="histopath_bim_des.config.runners module" href="histopath_bim_des.config.runners.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="histopath_bim_des.html">histopath_bim_des package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="histopath_bim_des.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="histopath_bim_des.config.html">histopath_bim_des.config package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="histopath_bim_des.config.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.html#module-histopath_bim_des.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.html">histopath_bim_des.process package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.html">histopath_bim_des package</a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.config.html">histopath_bim_des.config package</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.config.tasks module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.config.tasks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-histopath_bim_des.config.tasks">
+<span id="histopath-bim-des-config-tasks-module"></span><h1>histopath_bim_des.config.tasks module<a class="headerlink" href="#module-histopath_bim_des.config.tasks" title="Link to this heading"></a></h1>
+<p>Task configuration module for the histopath simulation model.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.config.tasks.</span></span><span class="sig-name descname"><span class="pre">TaskDurationsInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">receive_and_sort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_booking_in_investigation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">booking_in_internal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">booking_in_external</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">booking_in_investigation_internal_easy</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">booking_in_investigation_internal_hard</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">booking_in_investigation_external</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_up_bms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_up_pool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cut_up_large_specimens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_bone_station</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">decalc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_bone_station</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_into_decalc_oven</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_from_decalc_oven</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_processing_machine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_processing_machine</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_urgent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_small_surgicals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_large_surgicals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">processing_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_cooldown</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_trimming</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">microtomy_serials</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">microtomy_levels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">microtomy_larges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">microtomy_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_staining_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_staining_machine_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">staining_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">staining_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_staining_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_staining_machine_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_coverslip_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coverslip_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coverslip_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_coverslip_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">labelling</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_scanning_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_scanning_machine_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scanning_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">scanning_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_scanning_machine_regular</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload_scanning_machine_megas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_and_quality_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">assign_histopathologist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_report</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/config/tasks.html#TaskDurationsInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.pydantic.dev/latest/api/base_model/#pydantic.BaseModel" title="(in Pydantic v0.0.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></a></p>
+<p>Information for tracking task durations in a model.</p>
+<p>The field titles in this class <strong>MUST</strong> match the rows of the Excel input file
+(“Task Durations” tab).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.receive_and_sort">
+<span class="sig-name descname"><span class="pre">receive_and_sort</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.receive_and_sort" title="Link to this definition"></a></dt>
+<dd><p>Time for reception to receive a new specimen and assign a priority value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.pre_booking_in_investigation">
+<span class="sig-name descname"><span class="pre">pre_booking_in_investigation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.pre_booking_in_investigation" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a pre-booking-in investigation, if required.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_internal">
+<span class="sig-name descname"><span class="pre">booking_in_internal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_internal" title="Link to this definition"></a></dt>
+<dd><p>Time to book in the specimen if the specimen was received internally, i.e. it already
+exists on the EPIC sytem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_external">
+<span class="sig-name descname"><span class="pre">booking_in_external</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_external" title="Link to this definition"></a></dt>
+<dd><p>Time to book in the specimen if the specimen was received externally, i.e. a new entry
+must be created on EPIC.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_internal_easy">
+<span class="sig-name descname"><span class="pre">booking_in_investigation_internal_easy</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_internal_easy" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a booking-in investigation for an internal specimen, if the investigation
+is classified as “easy”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_internal_hard">
+<span class="sig-name descname"><span class="pre">booking_in_investigation_internal_hard</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_internal_hard" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a booking-in investigation for an internal specimen, if the investigation
+is classified as “hard”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_external">
+<span class="sig-name descname"><span class="pre">booking_in_investigation_external</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.booking_in_investigation_external" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a booking-in investigation for an external specimen.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_bms">
+<span class="sig-name descname"><span class="pre">cut_up_bms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_bms" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a BMS cut-up.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_pool">
+<span class="sig-name descname"><span class="pre">cut_up_pool</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_pool" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a pool cut-up.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_large_specimens">
+<span class="sig-name descname"><span class="pre">cut_up_large_specimens</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.cut_up_large_specimens" title="Link to this definition"></a></dt>
+<dd><p>Time to conduct a large specimens cut-up.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_bone_station">
+<span class="sig-name descname"><span class="pre">load_bone_station</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_bone_station" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of blocks into a bone station.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.decalc">
+<span class="sig-name descname"><span class="pre">decalc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.decalc" title="Link to this definition"></a></dt>
+<dd><p>Time to decalcify a bony specimen.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_bone_station">
+<span class="sig-name descname"><span class="pre">unload_bone_station</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_bone_station" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of blocks into a bone station.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_into_decalc_oven">
+<span class="sig-name descname"><span class="pre">load_into_decalc_oven</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_into_decalc_oven" title="Link to this definition"></a></dt>
+<dd><p>Time to load a single block into a bone station.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_from_decalc_oven">
+<span class="sig-name descname"><span class="pre">unload_from_decalc_oven</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_from_decalc_oven" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a single block into a bone station.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_processing_machine">
+<span class="sig-name descname"><span class="pre">load_processing_machine</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_processing_machine" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of blocks into a processing machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_processing_machine">
+<span class="sig-name descname"><span class="pre">unload_processing_machine</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_processing_machine" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of blocks from a processing machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.processing_urgent">
+<span class="sig-name descname"><span class="pre">processing_urgent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.processing_urgent" title="Link to this definition"></a></dt>
+<dd><p>Programme length for the processing of urgent blocks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.processing_small_surgicals">
+<span class="sig-name descname"><span class="pre">processing_small_surgicals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.processing_small_surgicals" title="Link to this definition"></a></dt>
+<dd><p>Programme length for the processing of small surgical blocks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.processing_large_surgicals">
+<span class="sig-name descname"><span class="pre">processing_large_surgicals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.processing_large_surgicals" title="Link to this definition"></a></dt>
+<dd><p>Programme length for the processing of large surgical blocks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.processing_megas">
+<span class="sig-name descname"><span class="pre">processing_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.processing_megas" title="Link to this definition"></a></dt>
+<dd><p>Programme length for the processing of mega blocks.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.embedding">
+<span class="sig-name descname"><span class="pre">embedding</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.embedding" title="Link to this definition"></a></dt>
+<dd><p>Time to embed a block in paraffin wax (staffed).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.embedding_cooldown">
+<span class="sig-name descname"><span class="pre">embedding_cooldown</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.embedding_cooldown" title="Link to this definition"></a></dt>
+<dd><p>Time for a wax block to cool (unstaffed).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.block_trimming">
+<span class="sig-name descname"><span class="pre">block_trimming</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.block_trimming" title="Link to this definition"></a></dt>
+<dd><p>Time to trim excess wax from the edges of a block.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_serials">
+<span class="sig-name descname"><span class="pre">microtomy_serials</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_serials" title="Link to this definition"></a></dt>
+<dd><p>Time to produce serial slides from a block.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_levels">
+<span class="sig-name descname"><span class="pre">microtomy_levels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_levels" title="Link to this definition"></a></dt>
+<dd><p>Time to produce level slides from a block.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_larges">
+<span class="sig-name descname"><span class="pre">microtomy_larges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_larges" title="Link to this definition"></a></dt>
+<dd><p>“Time to produce large-section slides from a block. These are regular-sized slides,
+but with larger tissue sections.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_megas">
+<span class="sig-name descname"><span class="pre">microtomy_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.microtomy_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to produce mega slides from a mega block.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_staining_machine_regular">
+<span class="sig-name descname"><span class="pre">load_staining_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_staining_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of regular-sized slides into a staining machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_staining_machine_megas">
+<span class="sig-name descname"><span class="pre">load_staining_machine_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_staining_machine_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of mega slides into a staining machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.staining_regular">
+<span class="sig-name descname"><span class="pre">staining_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.staining_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to stain a batch of regular slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.staining_megas">
+<span class="sig-name descname"><span class="pre">staining_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.staining_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to stain a batch of mega slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_staining_machine_regular">
+<span class="sig-name descname"><span class="pre">unload_staining_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_staining_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of regular slides from a staining machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_staining_machine_megas">
+<span class="sig-name descname"><span class="pre">unload_staining_machine_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_staining_machine_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of mega slides from a staining machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_coverslip_machine_regular">
+<span class="sig-name descname"><span class="pre">load_coverslip_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_coverslip_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of regular slides into a coverslip machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.coverslip_regular">
+<span class="sig-name descname"><span class="pre">coverslip_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.coverslip_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to affix coverslips to a batch of regular slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.coverslip_megas">
+<span class="sig-name descname"><span class="pre">coverslip_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.coverslip_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to affix a coverslip to a mega slide (manual task).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_coverslip_machine_regular">
+<span class="sig-name descname"><span class="pre">unload_coverslip_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_coverslip_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of regular slides into a coverslip machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.labelling">
+<span class="sig-name descname"><span class="pre">labelling</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.labelling" title="Link to this definition"></a></dt>
+<dd><p>Time to label a slide.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_scanning_machine_regular">
+<span class="sig-name descname"><span class="pre">load_scanning_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_scanning_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of regular slides into a scanning machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.load_scanning_machine_megas">
+<span class="sig-name descname"><span class="pre">load_scanning_machine_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.load_scanning_machine_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to load a batch of mega slides into a scanning machine. There are dedicated scanning
+machines for mega slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.scanning_regular">
+<span class="sig-name descname"><span class="pre">scanning_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.scanning_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to scan a batch of regular slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.scanning_megas">
+<span class="sig-name descname"><span class="pre">scanning_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.scanning_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to scan a batch of mega slides.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_scanning_machine_regular">
+<span class="sig-name descname"><span class="pre">unload_scanning_machine_regular</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_scanning_machine_regular" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of regular slides from a scanning machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.unload_scanning_machine_megas">
+<span class="sig-name descname"><span class="pre">unload_scanning_machine_megas</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.unload_scanning_machine_megas" title="Link to this definition"></a></dt>
+<dd><p>Time to unload a batch of mega slides from a scanning machine.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.block_and_quality_check">
+<span class="sig-name descname"><span class="pre">block_and_quality_check</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.block_and_quality_check" title="Link to this definition"></a></dt>
+<dd><p>Time to perform the block and quality checks for a specimen.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.assign_histopathologist">
+<span class="sig-name descname"><span class="pre">assign_histopathologist</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.assign_histopathologist" title="Link to this definition"></a></dt>
+<dd><p>Time to assign a histopathologist to a specimen.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.write_report">
+<span class="sig-name descname"><span class="pre">write_report</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo" title="histopath_bim_des.config.distributions.DistributionInfo"><span class="pre">DistributionInfo</span></a></em><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.write_report" title="Link to this definition"></a></dt>
+<dd><p>Time to write the histopathological report for a specimen.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.config.tasks.TaskDurationsInfo.from_workbook">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_workbook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wbook</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.workbook.workbook.html#openpyxl.workbook.workbook.Workbook" title="(in openpyxl v3.1)"><span class="pre">Workbook</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#histopath_bim_des.config.tasks.TaskDurationsInfo" title="histopath_bim_des.config.tasks.TaskDurationsInfo"><span class="pre">TaskDurationsInfo</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/config/tasks.html#TaskDurationsInfo.from_workbook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.config.tasks.TaskDurationsInfo.from_workbook" title="Link to this definition"></a></dt>
+<dd><p>Construct a dataclass instance from an Excel workbook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>wbook</strong> – The Excel workbook to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parsed dataclass instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="histopath_bim_des.config.runners.html" class="btn btn-neutral float-left" title="histopath_bim_des.config.runners module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.process.html" class="btn btn-neutral float-right" title="histopath_bim_des.process package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

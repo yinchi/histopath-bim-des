@@ -1,0 +1,7 @@
+histopath\_bim\_des.distribution module
+=======================================
+
+.. automodule:: histopath_bim_des.distribution
+   :members:
+   :undoc-members:
+   :show-inheritance:

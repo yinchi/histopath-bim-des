@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.bim &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.bim</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.bim</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Runner-related model parameters.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span><span class="p">,</span> <span class="n">product</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">PathLike</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Self</span>
+
+<span class="kn">import</span> <span class="nn">ifcopenshell</span> <span class="k">as</span> <span class="nn">ifc</span>
+<span class="kn">import</span> <span class="nn">matplotlib.axes</span>
+<span class="kn">import</span> <span class="nn">natsort</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">ntx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">shapely</span> <span class="k">as</span> <span class="nn">shp</span>
+<span class="kn">from</span> <span class="nn">ifcopenshell</span> <span class="kn">import</span> <span class="n">geom</span> <span class="k">as</span> <span class="n">ifc_geom</span>
+<span class="kn">from</span> <span class="nn">ifcopenshell.util</span> <span class="kn">import</span> <span class="n">shape</span> <span class="k">as</span> <span class="n">ifc_shape</span>
+<span class="kn">from</span> <span class="nn">shapely.plotting</span> <span class="kn">import</span> <span class="n">plot_polygon</span>
+
+<span class="kn">from</span> <span class="nn">.config.runners</span> <span class="kn">import</span> <span class="n">RunnerConfig</span>
+
+<span class="n">settings</span> <span class="o">=</span> <span class="n">ifc_geom</span><span class="o">.</span><span class="n">settings</span><span class="p">()</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">USE_WORLD_COORDS</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Find global coordinates</span>
+
+
+<div class="viewcode-block" id="BimModel">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">BimModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Representation of the histopathology lab&#39;s BIM data.&quot;&quot;&quot;</span>
+
+    <span class="n">elevations</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Elevation of each building storey, in metres.&quot;&quot;&quot;</span>
+
+    <span class="n">doors</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dataframe of door coordinate data.&quot;&quot;&quot;</span>
+
+    <span class="n">walls</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dataframe of wall coordinate data.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BimModel.from_ifc">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.from_ifc">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_ifc</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">PathLike</span><span class="p">,</span> <span class="n">door_filter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;d\d+$&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse an Industry Foundation Model file</span>
+<span class="sd">        representation of the histopathology lab.&quot;&quot;&quot;</span>
+        <span class="n">ifc_file</span> <span class="o">=</span> <span class="n">ifc</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="c1"># Get the list of elevations for each Storey in the IFC file.</span>
+        <span class="c1"># Our IFC file is known to express elevation in mm, convert to m.</span>
+        <span class="n">elevations</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">:</span> <span class="n">d1</span> <span class="o">|</span> <span class="n">d2</span><span class="p">,</span>
+            <span class="nb">map</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="p">{</span><span class="n">s</span><span class="o">.</span><span class="n">Name</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">Elevation</span><span class="o">/</span><span class="mf">1000.0</span><span class="p">},</span>
+                <span class="n">ifc_file</span><span class="o">.</span><span class="n">by_type</span><span class="p">(</span><span class="s2">&quot;ifcBuildingStorey&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Get the name of an IFC object; works for walls and doors</span>
+        <span class="c1"># in the current IFC file.</span>
+        <span class="k">def</span> <span class="nf">get_level_name</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">ifc</span><span class="o">.</span><span class="n">entity_instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="n">ContainedInStructure</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">RelatingStructure</span><span class="o">.</span><span class="n">Name</span>
+
+        <span class="c1"># Get the bounding box of an IFC object; for our IFC file,</span>
+        <span class="c1"># all walls and doors are aligned to the xyz axes.</span>
+        <span class="k">def</span> <span class="nf">get_coords</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">ifc</span><span class="o">.</span><span class="n">entity_instance</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">ifc_geom</span><span class="o">.</span><span class="n">create_shape</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+            <span class="n">grouped_verts</span> <span class="o">=</span> <span class="n">ifc_shape</span><span class="o">.</span><span class="n">get_vertices</span><span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xyz</span><span class="p">:</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">grouped_verts</span><span class="p">)),</span>
+                <span class="s1">&#39;y0&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xyz</span><span class="p">:</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">grouped_verts</span><span class="p">)),</span>
+                <span class="s1">&#39;z0&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xyz</span><span class="p">:</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">grouped_verts</span><span class="p">)),</span>
+                <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xyz</span><span class="p">:</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">grouped_verts</span><span class="p">)),</span>
+                <span class="s1">&#39;y1&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">xyz</span><span class="p">:</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">grouped_verts</span><span class="p">)),</span>
+                <span class="c1"># &#39;z1&#39;: max(map(lambda xyz: xyz[2], grouped_verts))</span>
+            <span class="p">}</span>
+
+        <span class="c1"># Extract door data</span>
+        <span class="n">doors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ifc</span><span class="o">.</span><span class="n">entity_instance</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">door</span><span class="p">:</span> <span class="nb">bool</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">door_filter</span><span class="p">,</span> <span class="n">door</span><span class="o">.</span><span class="n">Name</span><span class="p">)),</span>
+                <span class="n">ifc_file</span><span class="o">.</span><span class="n">by_type</span><span class="p">(</span><span class="s2">&quot;IfcDoor&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">doors_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_coords</span><span class="p">(</span><span class="n">door</span><span class="p">)</span> <span class="k">for</span> <span class="n">door</span> <span class="ow">in</span> <span class="n">doors</span><span class="p">]</span>
+        <span class="n">doors_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">&#39;door_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">door</span><span class="o">.</span><span class="n">Name</span> <span class="k">for</span> <span class="n">door</span> <span class="ow">in</span> <span class="n">doors</span><span class="p">],</span>
+            <span class="s1">&#39;floor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">get_level_name</span><span class="p">(</span><span class="n">door</span><span class="p">)</span> <span class="k">for</span> <span class="n">door</span> <span class="ow">in</span> <span class="n">doors</span><span class="p">],</span>
+            <span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">doors_coords</span><span class="p">],</span>
+            <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">doors_coords</span><span class="p">],</span>
+            <span class="s1">&#39;y0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;y0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">doors_coords</span><span class="p">],</span>
+            <span class="s1">&#39;y1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;y1&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">doors_coords</span><span class="p">],</span>
+            <span class="s1">&#39;z0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">doors_coords</span><span class="p">],</span>
+            <span class="c1"># &#39;z1&#39;: [box[&#39;z1&#39;] for box in doors_coords]</span>
+        <span class="p">})</span>\
+            <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+            <span class="n">by</span><span class="o">=</span><span class="s1">&#39;door_name&#39;</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">natsort</span><span class="o">.</span><span class="n">natsort_keygen</span><span class="p">()</span>
+        <span class="p">)</span>\
+            <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Extract wall data</span>
+        <span class="n">walls</span> <span class="o">=</span> <span class="n">ifc_file</span><span class="o">.</span><span class="n">by_type</span><span class="p">(</span><span class="s2">&quot;IfcWall&quot;</span><span class="p">)</span>
+        <span class="n">wall_coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_coords</span><span class="p">(</span><span class="n">wall</span><span class="p">)</span> <span class="k">for</span> <span class="n">wall</span> <span class="ow">in</span> <span class="n">walls</span><span class="p">]</span>
+        <span class="n">walls_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">&#39;wall_name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">wall</span><span class="o">.</span><span class="n">Name</span> <span class="k">for</span> <span class="n">wall</span> <span class="ow">in</span> <span class="n">walls</span><span class="p">],</span>
+            <span class="s1">&#39;floor&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">get_level_name</span><span class="p">(</span><span class="n">wall</span><span class="p">)</span> <span class="k">for</span> <span class="n">wall</span> <span class="ow">in</span> <span class="n">walls</span><span class="p">],</span>
+            <span class="s1">&#39;x0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;x0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">wall_coords</span><span class="p">],</span>
+            <span class="s1">&#39;x1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;x1&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">wall_coords</span><span class="p">],</span>
+            <span class="s1">&#39;y0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;y0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">wall_coords</span><span class="p">],</span>
+            <span class="s1">&#39;y1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;y1&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">wall_coords</span><span class="p">],</span>
+            <span class="s1">&#39;z0&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">box</span><span class="p">[</span><span class="s1">&#39;z0&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">box</span> <span class="ow">in</span> <span class="n">wall_coords</span><span class="p">],</span>
+            <span class="c1"># &#39;z1&#39;: [box[&#39;z1&#39;] for box in wall_coords]</span>
+        <span class="p">})</span>
+
+        <span class="k">return</span> <span class="n">BimModel</span><span class="p">(</span>
+            <span class="n">elevations</span><span class="o">=</span><span class="n">elevations</span><span class="p">,</span>
+            <span class="n">doors</span><span class="o">=</span><span class="n">doors_df</span><span class="p">,</span>
+            <span class="n">walls</span><span class="o">=</span><span class="n">walls_df</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BimModel.to_shapely">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.to_shapely">[docs]</a>
+    <span class="k">def</span> <span class="nf">to_shapely</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;ShapelyModel&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns a Shapely representation of a</span>
+<span class="sd">        floor in the `BimModel`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            level: Level number of the floor.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Shapely representation of the selected floor, where all doors and walls</span>
+<span class="sd">            are represented as `shapely.Polygon` instances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">wall_shapes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">shp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">wall</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">wall</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">wall</span><span class="o">.</span><span class="n">x1</span><span class="p">,</span> <span class="n">wall</span><span class="o">.</span><span class="n">y1</span><span class="p">,</span> <span class="n">ccw</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">wall</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">walls</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">walls</span><span class="o">.</span><span class="n">floor</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()</span>
+        <span class="p">]</span>
+
+        <span class="n">door_shapes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">door</span><span class="o">.</span><span class="n">door_name</span><span class="p">:</span> <span class="n">shp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+                <span class="n">door</span><span class="o">.</span><span class="n">x0</span><span class="p">,</span> <span class="n">door</span><span class="o">.</span><span class="n">y0</span><span class="p">,</span> <span class="n">door</span><span class="o">.</span><span class="n">x1</span><span class="p">,</span> <span class="n">door</span><span class="o">.</span><span class="n">y1</span><span class="p">,</span> <span class="n">ccw</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">door</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">doors</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">doors</span><span class="o">.</span><span class="n">floor</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="p">]</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">wall_shapes</span><span class="p">:</span>
+            <span class="n">shp</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">door_shapes</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">shp</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ShapelyModel</span><span class="p">(</span><span class="n">wall_shapes</span><span class="p">,</span> <span class="n">door_shapes</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ShapelyModel">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">ShapelyModel</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Shapely representation of a floor in the histopathology lab.</span>
+<span class="sd">    All doors and walls are represented as `shapely.Polygon` instances.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">wall_shapes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">shp</span><span class="o">.</span><span class="n">Polygon</span><span class="p">]</span>
+    <span class="n">door_shapes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">shp</span><span class="o">.</span><span class="n">Polygon</span><span class="p">]</span>
+
+<div class="viewcode-block" id="ShapelyModel.is_valid_box">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.is_valid_box">[docs]</a>
+    <span class="k">def</span> <span class="nf">is_valid_box</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">box</span><span class="p">:</span> <span class="n">shp</span><span class="o">.</span><span class="n">Polygon</span><span class="p">,</span>
+        <span class="n">ok_doors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Determines if box intersects with a wall or door</span>
+<span class="sd">        except for `ok_doors`. `ok_doors` will typically be the</span>
+<span class="sd">        source and destination doors of a shortest-path algorithm.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            box: The box to check against the current model.</span>
+<span class="sd">            ok_doors: A list of doors to ignore when checking for intersections.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Since all doors are within walls, we only need to check the</span>
+        <span class="c1"># ok_doors as special cases</span>
+
+        <span class="n">ok_door_shapes</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">door_shapes</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">ok_doors</span><span class="p">]</span>
+        <span class="n">shp</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">ok_door_shapes</span><span class="p">)):</span>
+            <span class="c1"># Intersects with door in ok_doors</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;ok_door&#39;</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">box</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wall_shapes</span><span class="p">)):</span>
+            <span class="c1"># Intersects with wall</span>
+            <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;wall&#39;</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;empty&#39;</span></div>
+
+
+<div class="viewcode-block" id="ShapelyModel.shortest_path">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.shortest_path">[docs]</a>
+    <span class="k">def</span> <span class="nf">shortest_path</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">from_door</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">to_door</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">grid_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">bottom_left</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+        <span class="n">top_right</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ntx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find the shortest path between two doors in the model.</span>
+<span class="sd">        A reasonable search box has been provided for the current study</span>
+<span class="sd">        (the histopathology lab at Addenbrooke&#39;s Hospital, Cambridge, UK).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            from_door: Starting door on the path.</span>
+<span class="sd">            to_door: Destination door on the path.</span>
+<span class="sd">            grid_size: Grid size for pathfinding algorithm, in metres. Defaults to 0.5.</span>
+<span class="sd">            bottom_left:</span>
+<span class="sd">                Bottom-left coordinate for pathfinding algorithm, in metres. Defaults to (30, 45).</span>
+<span class="sd">            top_right:</span>
+<span class="sd">                Top-right coordinate for pathfinding algorithm, in metres. Defaults to (90,70).</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            networkx.NetworkXNoPath:</span>
+<span class="sd">                If no path exists between `from_door` and `to_door` without</span>
+<span class="sd">                passing through a wall or another door.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Get grid dimensions (nX, nY)</span>
+        <span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">=</span> <span class="n">bottom_left</span>
+        <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">top_right</span>
+        <span class="n">n_x</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">))</span>
+        <span class="n">n_y</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">))</span>
+
+        <span class="c1"># Create base grid, assigning &#39;box&#39; and &#39;pos&#39; attributes</span>
+        <span class="c1"># to each node</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">grid_2d_graph</span><span class="p">(</span><span class="n">n_x</span><span class="p">,</span> <span class="n">n_y</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="n">x0</span> <span class="o">=</span> <span class="n">x_min</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="n">grid_size</span>
+            <span class="n">y0</span> <span class="o">=</span> <span class="n">y_min</span> <span class="o">+</span> <span class="n">j</span><span class="o">*</span><span class="n">grid_size</span>
+            <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)][</span><span class="s1">&#39;box&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">box</span><span class="p">(</span>
+                <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x0</span><span class="o">+</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">y0</span><span class="o">+</span><span class="n">grid_size</span><span class="p">,</span> <span class="n">ccw</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">shp</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)][</span><span class="s1">&#39;box&#39;</span><span class="p">])</span>
+            <span class="n">centroid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)][</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span>
+            <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">[(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)][</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># Select valid nodes for subgraph</span>
+        <span class="n">selected_nodes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_box</span><span class="p">(</span>
+                <span class="n">v</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">],</span>
+                <span class="n">ok_doors</span><span class="o">=</span><span class="p">[</span><span class="n">from_door</span><span class="p">,</span> <span class="n">to_door</span><span class="p">]</span>
+            <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">]</span>
+        <span class="n">grid2</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">subgraph</span><span class="p">(</span><span class="n">selected_nodes</span><span class="p">))</span>
+
+        <span class="c1"># Add diagonals to grid2 within each complete &quot;box&quot; of 4 edges</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="n">v</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="c1"># northeast direction</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+            <span class="p">):</span>
+                <span class="n">grid2</span><span class="o">.</span><span class="n">add_edge</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">weight</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+
+            <span class="c1"># southeast direction</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span>
+            <span class="p">):</span>
+                <span class="n">grid2</span><span class="o">.</span><span class="n">add_edge</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">weight</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="c1"># Get node indexes for from_door and to_door</span>
+        <span class="n">from_node</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">door_shapes</span><span class="p">[</span><span class="n">from_door</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="p">)</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">to_node</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">n</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;box&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">door_shapes</span><span class="p">[</span><span class="n">to_door</span><span class="p">]</span><span class="o">.</span><span class="n">centroid</span><span class="p">)</span>
+        <span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">path_nodes</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span>
+            <span class="n">grid2</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span>
+        <span class="p">)</span>
+        <span class="n">path_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">path_nodes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">path_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+        <span class="n">path_graph</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path_nodes</span><span class="p">):</span>
+            <span class="n">path_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">grid2</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="n">n</span><span class="p">][</span><span class="s1">&#39;pos&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">path_edges</span><span class="p">):</span>
+            <span class="n">path_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">grid2</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">e</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span>
+
+        <span class="n">path_length</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span>
+            <span class="n">grid2</span><span class="p">,</span> <span class="n">from_node</span><span class="p">,</span> <span class="n">to_node</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">grid_size</span>
+
+        <span class="k">return</span> <span class="n">path_length</span><span class="p">,</span> <span class="n">path_graph</span></div>
+
+
+<div class="viewcode-block" id="ShapelyModel.plot_floor">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.plot_floor">[docs]</a>
+    <span class="k">def</span> <span class="nf">plot_floor</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ax</span><span class="p">:</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span>
+        <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">bottom_left</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+        <span class="n">top_right</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plots the floor model using Matplotlib. Reasonable axis limits</span>
+<span class="sd">        have been provided for the current study (the histopathology lab at</span>
+<span class="sd">        Addenbrooke&#39;s Hospital, Cambridge, UK).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ax: The Axes object to plot to.</span>
+<span class="sd">            title: The plot title.</span>
+<span class="sd">            bottom_left:</span>
+<span class="sd">                Bottom left corner of plot. Defaults to (30, 45), corresponding</span>
+<span class="sd">                to metres in the floor plan.</span>
+<span class="sd">            top_right:</span>
+<span class="sd">                Top right corner of plot. Defaults to (100, 80), corresponding</span>
+<span class="sd">                to metres in the floor plan.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">wall_shapes</span><span class="p">:</span>
+            <span class="n">plot_polygon</span><span class="p">(</span>
+                <span class="n">p</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+                <span class="n">add_points</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">door_shapes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">plot_polygon</span><span class="p">(</span>
+                <span class="n">p</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+                <span class="n">add_points</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">0</span>
+            <span class="p">)</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">centroid</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;square&#39;</span><span class="p">)</span>
+        <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">bottom_left</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">top_right</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="logical_graph">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.logical_graph">[docs]</a>
+<span class="k">def</span> <span class="nf">logical_graph</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">ShapelyModel</span><span class="p">,</span>
+    <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ntx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct a logical graph representation of the floor model,</span>
+<span class="sd">    with nodes representing doors and edge weights representing travel</span>
+<span class="sd">    times in seconds.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        speed: Runner speed in m/s. Defaults to 1.2.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The logical graph for the given floor model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">door_shapes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k1</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">k2</span> <span class="ow">in</span> <span class="n">islice</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">keys</span><span class="p">),</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">path_len</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">shortest_path</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">)</span>
+                <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">path_len</span><span class="o">/</span><span class="n">speed</span><span class="p">)</span>  <span class="c1"># weight = runner_time</span>
+            <span class="k">except</span> <span class="n">ntx</span><span class="o">.</span><span class="n">NetworkXNoPath</span><span class="p">:</span>
+                <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">graph</span></div>
+
+
+
+<div class="viewcode-block" id="runner_times">
+<a class="viewcode-back" href="../../apidoc/histopath_bim_des.bim.html#histopath_bim_des.bim.runner_times">[docs]</a>
+<span class="k">def</span> <span class="nf">runner_times</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">BimModel</span><span class="p">,</span>
+    <span class="n">cfg</span><span class="p">:</span> <span class="n">RunnerConfig</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute runner times between process stages in the</span>
+<span class="sd">    histopathology model.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        model: BIM model representation of the histopathology lab.</span>
+<span class="sd">        config: Dataclass containing runner parameters.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Maps pairs of process stages to the time (in seconds) required to travel between them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Find all the levels containing doors of interest</span>
+    <span class="n">target_levels</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Level (\d+)&#39;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">doors</span><span class="o">.</span><span class="n">floor</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+
+    <span class="c1"># Build the logical graph for each target level and compose them</span>
+    <span class="n">logical_graphs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">level</span><span class="p">:</span> <span class="n">logical_graph</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">to_shapely</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">),</span> <span class="n">speed</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">runner_speed</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="n">target_levels</span>
+    <span class="p">}</span>
+    <span class="n">full_logical_graph</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">compose_all</span><span class="p">(</span><span class="n">logical_graphs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="c1"># Add extra paths between levels</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">cfg</span><span class="o">.</span><span class="n">extra_paths</span><span class="p">:</span>
+        <span class="n">full_logical_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">path</span><span class="o">.</span><span class="n">path</span><span class="p">,</span>
+            <span class="n">weight</span><span class="o">=</span><span class="n">path</span><span class="o">.</span><span class="n">duration_seconds</span>
+        <span class="p">)</span>
+
+    <span class="n">d</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">door_map</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;cutup&#39;</span> <span class="ow">in</span> <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="c1"># encapsulate single strings in a list as necessary</span>
+            <span class="n">du</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="s1">&#39;cutup&#39;</span> <span class="k">else</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">]]</span>
+            <span class="n">dv</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;cutup&#39;</span> <span class="k">else</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">]]</span>
+
+            <span class="c1"># compute the average runner time for all cutup rooms</span>
+            <span class="n">ret</span><span class="p">[(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">ntx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span>
+                        <span class="n">full_logical_graph</span><span class="p">,</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span>
+                    <span class="p">)</span> <span class="k">for</span> <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="n">du</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+                <span class="p">],</span>
+                <span class="n">weights</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">cutup_dist</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ret</span><span class="p">[(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)]</span> <span class="o">=</span> <span class="n">ntx</span><span class="o">.</span><span class="n">shortest_path_length</span><span class="p">(</span>
+                <span class="n">full_logical_graph</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span>
+            <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ret</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

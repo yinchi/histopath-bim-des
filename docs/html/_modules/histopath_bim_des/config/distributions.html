@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.config.distributions &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../apidoc/histopath_bim_des.html">histopath_bim_des package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.config.distributions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for histopath_bim_des.config.distributions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Defines a dataclass for a discrete probability distribution on the integers.&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">ty</span>
+
+<span class="kn">import</span> <span class="nn">pydantic</span> <span class="k">as</span> <span class="nn">pyd</span>
+
+
+<div class="viewcode-block" id="DistributionInfo">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo">[docs]</a>
+<span class="k">class</span> <span class="nc">DistributionInfo</span><span class="p">(</span><span class="n">pyd</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information describing a three-point random distributions for task durations.&quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">ty</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;Constant&#39;</span><span class="p">,</span> <span class="s1">&#39;Triangular&#39;</span><span class="p">,</span> <span class="s1">&#39;PERT&#39;</span><span class="p">]</span>  <span class="c1"># Supported distribution types</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The type of the distribution, one of &#39;Constant&#39;, &#39;Triangular&#39;, or &#39;PERT&#39;.&quot;&quot;&quot;</span>
+
+    <span class="n">low</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeFloat</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The minimum value of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="n">mode</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeFloat</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The most likely value of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="n">high</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeFloat</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The maximum of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="n">time_unit</span><span class="p">:</span> <span class="n">ty</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The time unit of the distribution, i.e. seconds, minutes, or hours.  Represented by the</span>
+<span class="sd">    first letter; the validator will accept any string starting with &#39;s&#39;, &#39;m&#39;, or &#39;h&#39;.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pyd</span><span class="o">.</span><span class="n">field_validator</span><span class="p">(</span><span class="s1">&#39;time_unit&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;before&#39;</span><span class="p">)</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_first_letter</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">time_unit_str</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Take only the first letter from a time-unit string.</span>
+
+<span class="sd">        For simplicity, only the first character of time-unit strings are checked, i.e.</span>
+<span class="sd">        &quot;hours&quot;, &quot;hour&quot;, and &quot;hxar&quot; are identical.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">time_unit_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">time_unit_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@pyd</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;after&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_enforce_ordering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;DistributionInfo&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure that the the ``low``, ``mode`` and ``high`` parameters of the distribution</span>
+<span class="sd">        are in non-decreasing order.&quot;&quot;&quot;</span>
+        <span class="c1"># Constant case</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;Constant&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="vm">__class__</span><span class="o">.</span><span class="n">model_construct</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Constant&#39;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+                <span class="n">time_unit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_unit</span>
+            <span class="p">)</span>
+        <span class="c1"># Other cases</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="s1">&#39;Failed requirement: mode &gt;= low&#39;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="s1">&#39;Failed requirement: high &gt;= mode&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+
+<div class="viewcode-block" id="IntDistributionInfo">
+<a class="viewcode-back" href="../../../apidoc/histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.IntDistributionInfo">[docs]</a>
+<span class="k">class</span> <span class="nc">IntDistributionInfo</span><span class="p">(</span><span class="n">pyd</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information describing a discretised three-point random distribution.</span>
+<span class="sd">    The underlying continuous distribution is constructed with parameters</span>
+<span class="sd">    `(low - 0.5, mode, high + 0.5)`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nb">type</span><span class="p">:</span> <span class="n">ty</span><span class="o">.</span><span class="n">Literal</span><span class="p">[</span><span class="s1">&#39;Constant&#39;</span><span class="p">,</span> <span class="s1">&#39;IntTriangular&#39;</span><span class="p">,</span> <span class="s1">&#39;IntPERT&#39;</span><span class="p">]</span>  <span class="c1"># Supported distribution types</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Type of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="n">low</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeInt</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minimum value of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="n">mode</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeInt</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Most likely value of the distribution, before discretisation.&quot;&quot;&quot;</span>
+
+    <span class="n">high</span><span class="p">:</span> <span class="n">pyd</span><span class="o">.</span><span class="n">NonNegativeInt</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Maximum value of the distribution.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pyd</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;after&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_enforce_ordering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ty</span><span class="o">.</span><span class="n">Self</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure that the the ``low``, ``mode`` and ``high`` parameters of the distribution</span>
+<span class="sd">        are in non-decreasing order.&quot;&quot;&quot;</span>
+        <span class="c1"># Constant case</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;Constant&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="vm">__class__</span><span class="o">.</span><span class="n">model_construct</span><span class="p">(</span>
+                <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;Constant&#39;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+        <span class="c1"># Other cases</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">low</span><span class="p">,</span> <span class="s1">&#39;Failed requirement: mode &gt;= low&#39;</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">high</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span> <span class="s1">&#39;Failed requirement: high &gt;= mode&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

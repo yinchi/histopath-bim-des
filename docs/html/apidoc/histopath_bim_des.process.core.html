@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des.process.core module &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.process.p10_reception module" href="histopath_bim_des.process.p10_reception.html" />
+    <link rel="prev" title="histopath_bim_des.process package" href="histopath_bim_des.process.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="histopath_bim_des.html">histopath_bim_des package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="histopath_bim_des.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.html">histopath_bim_des.config package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="histopath_bim_des.process.html">histopath_bim_des.process package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="histopath_bim_des.process.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.html#module-histopath_bim_des.process">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.html#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.html">histopath_bim_des package</a></li>
+          <li class="breadcrumb-item"><a href="histopath_bim_des.process.html">histopath_bim_des.process package</a></li>
+      <li class="breadcrumb-item active">histopath_bim_des.process.core module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.process.core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-histopath_bim_des.process.core">
+<span id="histopath-bim-des-process-core-module"></span><h1>histopath_bim_des.process.core module<a class="headerlink" href="#module-histopath_bim_des.process.core" title="Link to this heading"></a></h1>
+<p>Common definitions for salabim processes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ArrivalGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">ArrivalGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.arrivals.html#histopath_bim_des.config.arrivals.ArrivalSchedule" title="histopath_bim_des.config.arrivals.ArrivalSchedule"><span class="pre">ArrivalSchedule</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ArrivalGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ArrivalGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></p>
+<p>Specimen arrival generator process.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ArrivalGenerator.iterator">
+<span class="sig-name descname"><span class="pre">iterator</span></span><a class="headerlink" href="#histopath_bim_des.process.core.ArrivalGenerator.iterator" title="Link to this definition"></a></dt>
+<dd><p>Iterator yielding the arrival rate for each hourly period.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>itertools.cycle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ArrivalGenerator.cls_args">
+<span class="sig-name descname"><span class="pre">cls_args</span></span><a class="headerlink" href="#histopath_bim_des.process.core.ArrivalGenerator.cls_args" title="Link to this definition"></a></dt>
+<dd><p>Arguments passed to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Specimen</span></code> constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ArrivalGenerator.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ArrivalGenerator.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ArrivalGenerator.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ArrivalGenerator.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ArrivalGenerator.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ArrivalGenerator.process" title="Link to this definition"></a></dt>
+<dd><p>The generator process. Creates a sub-generator for
+each interval (of length <cite>ARR_RATE_INTERVAL_HOURS</cite>) with the specified rate.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">ResourceScheduler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourceSchedule" title="histopath_bim_des.config.resources.ResourceSchedule"><span class="pre">ResourceSchedule</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ResourceScheduler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code></p>
+<p>Resource scheduler class. The resource level is set every
+<cite>RESOURCE_ALLOCATION_INTERVAL_HOURS</cite> hours. The resource level
+is set to 0 if the day entry in the <cite>ResourceSchedule</cite> is 0.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler.resource">
+<span class="sig-name descname"><span class="pre">resource</span></span><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler.resource" title="Link to this definition"></a></dt>
+<dd><p>The resource to control the allocation of.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Resource" title="(in salabim)">salabim.Resource</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler.schedule">
+<span class="sig-name descname"><span class="pre">schedule</span></span><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler.schedule" title="Link to this definition"></a></dt>
+<dd><p>The resource schedule in dataclass form.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourceSchedule" title="histopath_bim_des.config.resources.ResourceSchedule">ResourceSchedule</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler.env">
+<span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler.env" title="Link to this definition"></a></dt>
+<dd><p>The simulation model this arrival generator is attached to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schedule</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourceSchedule" title="histopath_bim_des.config.resources.ResourceSchedule"><span class="pre">ResourceSchedule</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ResourceScheduler.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.ResourceScheduler.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#ResourceScheduler.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.ResourceScheduler.process" title="Link to this definition"></a></dt>
+<dd><p>Change the resource capacity based on the schedule.
+Capacities are given in 30-min intervals.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BaseProcess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">BaseProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BaseProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BaseProcess" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Component</span></code>, <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>A process with an in-queue. Typically does work on Components
+arriving to the in-queue and pushes completed components to another
+process’ in-queue.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BaseProcess.in_queue">
+<span class="sig-name descname"><span class="pre">in_queue</span></span><a class="headerlink" href="#histopath_bim_des.process.core.BaseProcess.in_queue" title="Link to this definition"></a></dt>
+<dd><p>The in-queue of the process from which entities are taken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Store" title="(in salabim)">salabim.Store</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BaseProcess.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BaseProcess.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BaseProcess.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BaseProcess.process">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BaseProcess.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BaseProcess.process" title="Link to this definition"></a></dt>
+<dd><p>Process launched by the simulation upon instantiation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">Process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.12)"><span class="pre">Type</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component" title="histopath_bim_des.specimens.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#Process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.Process" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#histopath_bim_des.process.core.BaseProcess" title="histopath_bim_des.process.core.BaseProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseProcess</span></code></a></p>
+<p>A looped processed that takes one entity from its in-queue at a time
+and activates it.</p>
+<p>For example, <cite>Process(name=’do_this’, Specimen, do_this)</cite> creates
+<cite>Specimen.do_this = do_this</cite> and calls it for every arriving <cite>Specimen</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.in_queue">
+<span class="sig-name descname"><span class="pre">in_queue</span></span><a class="headerlink" href="#histopath_bim_des.process.core.Process.in_queue" title="Link to this definition"></a></dt>
+<dd><p>The in-queue of the process from which entities are taken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Store" title="(in salabim)">salabim.Store</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.in_type">
+<span class="sig-name descname"><span class="pre">in_type</span></span><a class="headerlink" href="#histopath_bim_des.process.core.Process.in_type" title="Link to this definition"></a></dt>
+<dd><p>The type of the entities to be processed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.12)"><em>Type</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.fn">
+<span class="sig-name descname"><span class="pre">fn</span></span><a class="headerlink" href="#histopath_bim_des.process.core.Process.fn" title="Link to this definition"></a></dt>
+<dd><p>The function to be activated by each new arrival to the process.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><em>Callable</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.env">
+<span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#histopath_bim_des.process.core.Process.env" title="Link to this definition"></a></dt>
+<dd><p>The simulation model this arrival generator is attached to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.12)"><span class="pre">Type</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component" title="histopath_bim_des.specimens.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#Process.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.Process.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.Process.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#Process.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.Process.process" title="Link to this definition"></a></dt>
+<dd><p>Process launched by the simulation upon instantiation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.register_process">
+<span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">register_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Type" title="(in Python v3.12)"><span class="pre">Type</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component" title="histopath_bim_des.specimens.Component"><span class="pre">Component</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#register_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.register_process" title="Link to this definition"></a></dt>
+<dd><p>Register a process to a simulation environment.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">BatchingProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BatchingProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#histopath_bim_des.process.core.BaseProcess" title="histopath_bim_des.process.core.BaseProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseProcess</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generic</span></code></a>[<code class="xref py py-obj docutils literal notranslate"><span class="pre">C</span></code>]</p>
+<p>Takes <cite>batch_size</cite> entites from <cite>in_queue</cite> and inserts a single
+instance of <cite>out_type</cite> to <cite>env.processes[out_process].in_queue</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.batch_size" title="Link to this definition"></a></dt>
+<dd><p>The batch size or its distribution.  Can take <cite>salabim</cite> distributions or any
+other type with <code class="docutils literal notranslate"><span class="pre">__call__</span></code> implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><em>Callable</em></a>[[], <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.in_queue">
+<span class="sig-name descname"><span class="pre">in_queue</span></span><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.in_queue" title="Link to this definition"></a></dt>
+<dd><p>The in-queue of the process from which entities are taken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Store" title="(in salabim)">salabim.Store</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.out_process">
+<span class="sig-name descname"><span class="pre">out_process</span></span><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.out_process" title="Link to this definition"></a></dt>
+<dd><p>The name of the process receiving the batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.env">
+<span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.env" title="Link to this definition"></a></dt>
+<dd><p>The simulation model this arrival generator is attached to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.12)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BatchingProcess.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.BatchingProcess.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#BatchingProcess.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.BatchingProcess.process" title="Link to this definition"></a></dt>
+<dd><p>Process launched by the simulation upon instantiation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">CollationProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#CollationProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#histopath_bim_des.process.core.BaseProcess" title="histopath_bim_des.process.core.BaseProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseProcess</span></code></a></p>
+<p>Takes entities from <cite>in_queue</cite> and places them into a pool.
+Once all entities with the same parent are found (based on comparing
+with a counter), the parent is inserted into
+<cite>env.processes[out_process].in_queue</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.counter_name">
+<span class="sig-name descname"><span class="pre">counter_name</span></span><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.counter_name" title="Link to this definition"></a></dt>
+<dd><p>The name of the counter in the parent entity defining
+the number of child entities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.in_queue">
+<span class="sig-name descname"><span class="pre">in_queue</span></span><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.in_queue" title="Link to this definition"></a></dt>
+<dd><p>The in-queue of the process from which entities are taken.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Store" title="(in salabim)">salabim.Store</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.out_process">
+<span class="sig-name descname"><span class="pre">out_process</span></span><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.out_process" title="Link to this definition"></a></dt>
+<dd><p>The name of the process receiving the reconstituted parent entity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.env">
+<span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.env" title="Link to this definition"></a></dt>
+<dd><p>The simulation model this arrival generator is attached to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counter_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#CollationProcess.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.CollationProcess.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#CollationProcess.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.CollationProcess.process" title="Link to this definition"></a></dt>
+<dd><p>Process launched by the simulation upon instantiation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.RunnerDurations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">RunnerDurations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retur</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#RunnerDurations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.RunnerDurations" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Durations for collecting/unloading the delivery batch and travelling to/from the
+destination.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.RunnerDurations.collect">
+<span class="sig-name descname"><span class="pre">collect</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></em><a class="headerlink" href="#histopath_bim_des.process.core.RunnerDurations.collect" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.RunnerDurations.out">
+<span class="sig-name descname"><span class="pre">out</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></em><a class="headerlink" href="#histopath_bim_des.process.core.RunnerDurations.out" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.RunnerDurations.unload">
+<span class="sig-name descname"><span class="pre">unload</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></em><a class="headerlink" href="#histopath_bim_des.process.core.RunnerDurations.unload" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.RunnerDurations.retur">
+<span class="sig-name descname"><span class="pre">retur</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Distribution</span></em><a class="headerlink" href="#histopath_bim_des.process.core.RunnerDurations.retur" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">histopath_bim_des.process.core.</span></span><span class="sig-name descname"><span class="pre">DeliveryProcess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">durations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#histopath_bim_des.process.core.RunnerDurations" title="histopath_bim_des.process.core.RunnerDurations"><span class="pre">RunnerDurations</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model"><span class="pre">Model</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#DeliveryProcess"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#histopath_bim_des.process.core.BaseProcess" title="histopath_bim_des.process.core.BaseProcess"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseProcess</span></code></a></p>
+<p>Takes entities/batches from the <cite>in_queue</cite> and places them
+in <cite>env.processes[out_process].in_queue</cite>, after some delay.
+A resource is required to move the entity/batch and requires
+time to travel between the locations associated with the two
+processes.  Batches are unbatched upon arrival.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.runner">
+<span class="sig-name descname"><span class="pre">runner</span></span><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.runner" title="Link to this definition"></a></dt>
+<dd><p>The resource (e.g. staff) responsible for the delivery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.salabim.org/manual/Reference.html#salabim.Resource" title="(in salabim)">salabim.Resource</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.durations">
+<span class="sig-name descname"><span class="pre">durations</span></span><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.durations" title="Link to this definition"></a></dt>
+<dd><p>Durations for collecting/unloading the delivery batch and travelling to/from the
+destination.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#histopath_bim_des.process.core.RunnerDurations" title="histopath_bim_des.process.core.RunnerDurations">RunnerDurations</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.out_process">
+<span class="sig-name descname"><span class="pre">out_process</span></span><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.out_process" title="Link to this definition"></a></dt>
+<dd><p>The name of the process receiving the delivery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.env">
+<span class="sig-name descname"><span class="pre">env</span></span><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.env" title="Link to this definition"></a></dt>
+<dd><p>The simulation model this arrival generator is attached to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model" title="histopath_bim_des.model.Model">Model</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">durations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#histopath_bim_des.process.core.RunnerDurations" title="histopath_bim_des.process.core.RunnerDurations"><span class="pre">RunnerDurations</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_process</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#DeliveryProcess.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.setup" title="Link to this definition"></a></dt>
+<dd><p>Set up the component, called immediately after initialisation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="histopath_bim_des.process.core.DeliveryProcess.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference internal" href="../_modules/histopath_bim_des/process/core.html#DeliveryProcess.process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#histopath_bim_des.process.core.DeliveryProcess.process" title="Link to this definition"></a></dt>
+<dd><p>Process launched by the simulation upon instantiation.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="histopath_bim_des.process.html" class="btn btn-neutral float-left" title="histopath_bim_des.process package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.process.p10_reception.html" class="btn btn-neutral float-right" title="histopath_bim_des.process.p10_reception module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

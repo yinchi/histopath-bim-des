@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>histopath_bim_des package &mdash; histopath-bim-des 0.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="histopath_bim_des.config package" href="histopath_bim_des.config.html" />
+    <link rel="prev" title="Histopathology processes" href="../processes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            histopath-bim-des
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Model Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation.html">Simulation and KPI extraction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../processes.html">Histopathology processes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API reference:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">histopath_bim_des package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.html">histopath_bim_des.config package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.html">histopath_bim_des.process package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html">histopath_bim_des.bim module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html">histopath_bim_des.distribution module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.excel.html">histopath_bim_des.excel module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html">histopath_bim_des.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html">histopath_bim_des.specimens module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.util.html">histopath_bim_des.util module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-histopath_bim_des">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">histopath-bim-des</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">histopath_bim_des package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/apidoc/histopath_bim_des.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="histopath-bim-des-package">
+<h1>histopath_bim_des package<a class="headerlink" href="#histopath-bim-des-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.config.html">histopath_bim_des.config package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.config.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.arrivals.html">histopath_bim_des.config.arrivals module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.arrivals.html#histopath_bim_des.config.arrivals.ArrivalSchedule"><code class="docutils literal notranslate"><span class="pre">ArrivalSchedule</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.arrivals.html#histopath_bim_des.config.arrivals.ArrivalSchedules"><code class="docutils literal notranslate"><span class="pre">ArrivalSchedules</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.batching.html">histopath_bim_des.config.batching module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.batching.html#histopath_bim_des.config.batching.BatchSizes"><code class="docutils literal notranslate"><span class="pre">BatchSizes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.config.html">histopath_bim_des.config.config module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.config.html#histopath_bim_des.config.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.distributions.html">histopath_bim_des.config.distributions module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.DistributionInfo"><code class="docutils literal notranslate"><span class="pre">DistributionInfo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.distributions.html#histopath_bim_des.config.distributions.IntDistributionInfo"><code class="docutils literal notranslate"><span class="pre">IntDistributionInfo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.global_vars.html">histopath_bim_des.config.global_vars module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.global_vars.html#histopath_bim_des.config.global_vars.Globals"><code class="docutils literal notranslate"><span class="pre">Globals</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.resources.html">histopath_bim_des.config.resources module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourceSchedule"><code class="docutils literal notranslate"><span class="pre">ResourceSchedule</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourceInfo"><code class="docutils literal notranslate"><span class="pre">ResourceInfo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.resources.html#histopath_bim_des.config.resources.ResourcesInfo"><code class="docutils literal notranslate"><span class="pre">ResourcesInfo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.runners.html">histopath_bim_des.config.runners module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.ProcessDoorMap"><code class="docutils literal notranslate"><span class="pre">ProcessDoorMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.PathDefinition"><code class="docutils literal notranslate"><span class="pre">PathDefinition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.RunnerExtraDurations"><code class="docutils literal notranslate"><span class="pre">RunnerExtraDurations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.RunnerConfig"><code class="docutils literal notranslate"><span class="pre">RunnerConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.RunnerTimesConfig"><code class="docutils literal notranslate"><span class="pre">RunnerTimesConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.config.tasks.html">histopath_bim_des.config.tasks module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.config.tasks.html#histopath_bim_des.config.tasks.TaskDurationsInfo"><code class="docutils literal notranslate"><span class="pre">TaskDurationsInfo</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.config.html#module-histopath_bim_des.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.process.html">histopath_bim_des.process package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.process.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.core.html">histopath_bim_des.process.core module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.ArrivalGenerator"><code class="docutils literal notranslate"><span class="pre">ArrivalGenerator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.ResourceScheduler"><code class="docutils literal notranslate"><span class="pre">ResourceScheduler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.BaseProcess"><code class="docutils literal notranslate"><span class="pre">BaseProcess</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.Process"><code class="docutils literal notranslate"><span class="pre">Process</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.register_process"><code class="docutils literal notranslate"><span class="pre">register_process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.BatchingProcess"><code class="docutils literal notranslate"><span class="pre">BatchingProcess</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.CollationProcess"><code class="docutils literal notranslate"><span class="pre">CollationProcess</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.RunnerDurations"><code class="docutils literal notranslate"><span class="pre">RunnerDurations</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.core.html#histopath_bim_des.process.core.DeliveryProcess"><code class="docutils literal notranslate"><span class="pre">DeliveryProcess</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p10_reception.html">histopath_bim_des.process.p10_reception module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p10_reception.html#histopath_bim_des.process.p10_reception.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p10_reception.html#histopath_bim_des.process.p10_reception.arrive_reception"><code class="docutils literal notranslate"><span class="pre">arrive_reception()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p10_reception.html#histopath_bim_des.process.p10_reception.booking_in"><code class="docutils literal notranslate"><span class="pre">booking_in()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html">histopath_bim_des.process.p20_cutup module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.cutup_start"><code class="docutils literal notranslate"><span class="pre">cutup_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.cutup_generic"><code class="docutils literal notranslate"><span class="pre">cutup_generic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.cutup_bms"><code class="docutils literal notranslate"><span class="pre">cutup_bms()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.cutup_pool"><code class="docutils literal notranslate"><span class="pre">cutup_pool()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p20_cutup.html#histopath_bim_des.process.p20_cutup.cutup_large"><code class="docutils literal notranslate"><span class="pre">cutup_large()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html">histopath_bim_des.process.p30_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_start"><code class="docutils literal notranslate"><span class="pre">processing_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.decalc_bone_station"><code class="docutils literal notranslate"><span class="pre">decalc_bone_station()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.decalc_oven"><code class="docutils literal notranslate"><span class="pre">decalc_oven()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_assign_queue"><code class="docutils literal notranslate"><span class="pre">processing_assign_queue()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_urgents"><code class="docutils literal notranslate"><span class="pre">processing_urgents()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_generic"><code class="docutils literal notranslate"><span class="pre">processing_generic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_smalls"><code class="docutils literal notranslate"><span class="pre">processing_smalls()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_larges"><code class="docutils literal notranslate"><span class="pre">processing_larges()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.processing_megas"><code class="docutils literal notranslate"><span class="pre">processing_megas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.embed_and_trim"><code class="docutils literal notranslate"><span class="pre">embed_and_trim()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p30_processing.html#histopath_bim_des.process.p30_processing.post_processing"><code class="docutils literal notranslate"><span class="pre">post_processing()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p40_microtomy.html">histopath_bim_des.process.p40_microtomy module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p40_microtomy.html#histopath_bim_des.process.p40_microtomy.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p40_microtomy.html#histopath_bim_des.process.p40_microtomy.microtomy"><code class="docutils literal notranslate"><span class="pre">microtomy()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html">histopath_bim_des.process.p50_staining module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html#histopath_bim_des.process.p50_staining.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html#histopath_bim_des.process.p50_staining.staining_start"><code class="docutils literal notranslate"><span class="pre">staining_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html#histopath_bim_des.process.p50_staining.staining_regular"><code class="docutils literal notranslate"><span class="pre">staining_regular()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html#histopath_bim_des.process.p50_staining.staining_megas"><code class="docutils literal notranslate"><span class="pre">staining_megas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p50_staining.html#histopath_bim_des.process.p50_staining.post_staining"><code class="docutils literal notranslate"><span class="pre">post_staining()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p60_labelling.html">histopath_bim_des.process.p60_labelling module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p60_labelling.html#histopath_bim_des.process.p60_labelling.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p60_labelling.html#histopath_bim_des.process.p60_labelling.labelling"><code class="docutils literal notranslate"><span class="pre">labelling()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html">histopath_bim_des.process.p70_scanning module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.scanning_start"><code class="docutils literal notranslate"><span class="pre">scanning_start()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.scanning_generic"><code class="docutils literal notranslate"><span class="pre">scanning_generic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.scanning_regular"><code class="docutils literal notranslate"><span class="pre">scanning_regular()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.scanning_megas"><code class="docutils literal notranslate"><span class="pre">scanning_megas()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p70_scanning.html#histopath_bim_des.process.p70_scanning.post_scanning"><code class="docutils literal notranslate"><span class="pre">post_scanning()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p80_qc.html">histopath_bim_des.process.p80_qc module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p80_qc.html#histopath_bim_des.process.p80_qc.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p80_qc.html#histopath_bim_des.process.p80_qc.qc"><code class="docutils literal notranslate"><span class="pre">qc()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.process.p90_reporting.html">histopath_bim_des.process.p90_reporting module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p90_reporting.html#histopath_bim_des.process.p90_reporting.register_processes"><code class="docutils literal notranslate"><span class="pre">register_processes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p90_reporting.html#histopath_bim_des.process.p90_reporting.assign_histopath"><code class="docutils literal notranslate"><span class="pre">assign_histopath()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="histopath_bim_des.process.p90_reporting.html#histopath_bim_des.process.p90_reporting.report"><code class="docutils literal notranslate"><span class="pre">report()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.process.html#module-histopath_bim_des.process">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.bim.html">histopath_bim_des.bim module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel"><code class="docutils literal notranslate"><span class="pre">BimModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.elevations"><code class="docutils literal notranslate"><span class="pre">BimModel.elevations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.doors"><code class="docutils literal notranslate"><span class="pre">BimModel.doors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.walls"><code class="docutils literal notranslate"><span class="pre">BimModel.walls</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.from_ifc"><code class="docutils literal notranslate"><span class="pre">BimModel.from_ifc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.BimModel.to_shapely"><code class="docutils literal notranslate"><span class="pre">BimModel.to_shapely()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel"><code class="docutils literal notranslate"><span class="pre">ShapelyModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.wall_shapes"><code class="docutils literal notranslate"><span class="pre">ShapelyModel.wall_shapes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.door_shapes"><code class="docutils literal notranslate"><span class="pre">ShapelyModel.door_shapes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.is_valid_box"><code class="docutils literal notranslate"><span class="pre">ShapelyModel.is_valid_box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.shortest_path"><code class="docutils literal notranslate"><span class="pre">ShapelyModel.shortest_path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.ShapelyModel.plot_floor"><code class="docutils literal notranslate"><span class="pre">ShapelyModel.plot_floor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.logical_graph"><code class="docutils literal notranslate"><span class="pre">logical_graph()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.bim.html#histopath_bim_des.bim.runner_times"><code class="docutils literal notranslate"><span class="pre">runner_times()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.distribution.html">histopath_bim_des.distribution module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Constant"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Constant._value"><code class="docutils literal notranslate"><span class="pre">Constant._value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Tri"><code class="docutils literal notranslate"><span class="pre">Tri</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Tri._low"><code class="docutils literal notranslate"><span class="pre">Tri._low</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Tri._mode"><code class="docutils literal notranslate"><span class="pre">Tri._mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Tri._high"><code class="docutils literal notranslate"><span class="pre">Tri._high</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT"><code class="docutils literal notranslate"><span class="pre">PERT</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT._low"><code class="docutils literal notranslate"><span class="pre">PERT._low</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT._mode"><code class="docutils literal notranslate"><span class="pre">PERT._mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT._high"><code class="docutils literal notranslate"><span class="pre">PERT._high</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.print_info"><code class="docutils literal notranslate"><span class="pre">PERT.print_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.sample"><code class="docutils literal notranslate"><span class="pre">PERT.sample()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.PERT.mean"><code class="docutils literal notranslate"><span class="pre">PERT.mean()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.Distribution"><code class="docutils literal notranslate"><span class="pre">Distribution</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT"><code class="docutils literal notranslate"><span class="pre">IntPERT</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.low"><code class="docutils literal notranslate"><span class="pre">IntPERT.low</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.mode"><code class="docutils literal notranslate"><span class="pre">IntPERT.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.high"><code class="docutils literal notranslate"><span class="pre">IntPERT.high</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.pert"><code class="docutils literal notranslate"><span class="pre">IntPERT.pert</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntPERT.sample"><code class="docutils literal notranslate"><span class="pre">IntPERT.sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri"><code class="docutils literal notranslate"><span class="pre">IntTri</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.low"><code class="docutils literal notranslate"><span class="pre">IntTri.low</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.mode"><code class="docutils literal notranslate"><span class="pre">IntTri.mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.high"><code class="docutils literal notranslate"><span class="pre">IntTri.high</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.tri"><code class="docutils literal notranslate"><span class="pre">IntTri.tri</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntTri.sample"><code class="docutils literal notranslate"><span class="pre">IntTri.sample()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntConstant"><code class="docutils literal notranslate"><span class="pre">IntConstant</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntConstant.value"><code class="docutils literal notranslate"><span class="pre">IntConstant.value</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.distribution.html#histopath_bim_des.distribution.IntDistribution"><code class="docutils literal notranslate"><span class="pre">IntDistribution</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.excel.html">histopath_bim_des.excel module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.excel.html#histopath_bim_des.excel.get_name"><code class="docutils literal notranslate"><span class="pre">get_name()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.excel.html#histopath_bim_des.excel.get_table"><code class="docutils literal notranslate"><span class="pre">get_table()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.excel.html#histopath_bim_des.excel.remove_table_filters"><code class="docutils literal notranslate"><span class="pre">remove_table_filters()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.excel.html#histopath_bim_des.excel.write_table"><code class="docutils literal notranslate"><span class="pre">write_table()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.model.html">histopath_bim_des.model module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources"><code class="docutils literal notranslate"><span class="pre">Resources</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.booking_in_staff"><code class="docutils literal notranslate"><span class="pre">Resources.booking_in_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.bms"><code class="docutils literal notranslate"><span class="pre">Resources.bms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.cut_up_assistant"><code class="docutils literal notranslate"><span class="pre">Resources.cut_up_assistant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.processing_room_staff"><code class="docutils literal notranslate"><span class="pre">Resources.processing_room_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.microtomy_staff"><code class="docutils literal notranslate"><span class="pre">Resources.microtomy_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.staining_staff"><code class="docutils literal notranslate"><span class="pre">Resources.staining_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.scanning_staff"><code class="docutils literal notranslate"><span class="pre">Resources.scanning_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.qc_staff"><code class="docutils literal notranslate"><span class="pre">Resources.qc_staff</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.histopathologist"><code class="docutils literal notranslate"><span class="pre">Resources.histopathologist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.bone_station"><code class="docutils literal notranslate"><span class="pre">Resources.bone_station</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.processing_machine"><code class="docutils literal notranslate"><span class="pre">Resources.processing_machine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.staining_machine"><code class="docutils literal notranslate"><span class="pre">Resources.staining_machine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.coverslip_machine"><code class="docutils literal notranslate"><span class="pre">Resources.coverslip_machine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.scanning_machine_regular"><code class="docutils literal notranslate"><span class="pre">Resources.scanning_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Resources.scanning_machine_megas"><code class="docutils literal notranslate"><span class="pre">Resources.scanning_machine_megas</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations"><code class="docutils literal notranslate"><span class="pre">TaskDurations</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.receive_and_sort"><code class="docutils literal notranslate"><span class="pre">TaskDurations.receive_and_sort</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.pre_booking_in_investigation"><code class="docutils literal notranslate"><span class="pre">TaskDurations.pre_booking_in_investigation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.booking_in_internal"><code class="docutils literal notranslate"><span class="pre">TaskDurations.booking_in_internal</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.booking_in_external"><code class="docutils literal notranslate"><span class="pre">TaskDurations.booking_in_external</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.booking_in_investigation_internal_easy"><code class="docutils literal notranslate"><span class="pre">TaskDurations.booking_in_investigation_internal_easy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.booking_in_investigation_internal_hard"><code class="docutils literal notranslate"><span class="pre">TaskDurations.booking_in_investigation_internal_hard</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.booking_in_investigation_external"><code class="docutils literal notranslate"><span class="pre">TaskDurations.booking_in_investigation_external</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.cut_up_bms"><code class="docutils literal notranslate"><span class="pre">TaskDurations.cut_up_bms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.cut_up_pool"><code class="docutils literal notranslate"><span class="pre">TaskDurations.cut_up_pool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.cut_up_large_specimens"><code class="docutils literal notranslate"><span class="pre">TaskDurations.cut_up_large_specimens</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_bone_station"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_bone_station</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.decalc"><code class="docutils literal notranslate"><span class="pre">TaskDurations.decalc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_bone_station"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_bone_station</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_into_decalc_oven"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_into_decalc_oven</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_from_decalc_oven"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_from_decalc_oven</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_processing_machine"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_processing_machine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_processing_machine"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_processing_machine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.processing_urgent"><code class="docutils literal notranslate"><span class="pre">TaskDurations.processing_urgent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.processing_small_surgicals"><code class="docutils literal notranslate"><span class="pre">TaskDurations.processing_small_surgicals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.processing_large_surgicals"><code class="docutils literal notranslate"><span class="pre">TaskDurations.processing_large_surgicals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.processing_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.processing_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.embedding"><code class="docutils literal notranslate"><span class="pre">TaskDurations.embedding</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.embedding_cooldown"><code class="docutils literal notranslate"><span class="pre">TaskDurations.embedding_cooldown</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.block_trimming"><code class="docutils literal notranslate"><span class="pre">TaskDurations.block_trimming</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.microtomy_serials"><code class="docutils literal notranslate"><span class="pre">TaskDurations.microtomy_serials</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.microtomy_levels"><code class="docutils literal notranslate"><span class="pre">TaskDurations.microtomy_levels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.microtomy_larges"><code class="docutils literal notranslate"><span class="pre">TaskDurations.microtomy_larges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.microtomy_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.microtomy_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_staining_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_staining_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_staining_machine_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_staining_machine_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.staining_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.staining_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.staining_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.staining_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_staining_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_staining_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_staining_machine_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_staining_machine_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_coverslip_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_coverslip_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.coverslip_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.coverslip_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.coverslip_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.coverslip_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_coverslip_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_coverslip_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.labelling"><code class="docutils literal notranslate"><span class="pre">TaskDurations.labelling</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_scanning_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_scanning_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.load_scanning_machine_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.load_scanning_machine_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.scanning_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.scanning_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.scanning_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.scanning_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_scanning_machine_regular"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_scanning_machine_regular</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.unload_scanning_machine_megas"><code class="docutils literal notranslate"><span class="pre">TaskDurations.unload_scanning_machine_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.block_and_quality_check"><code class="docutils literal notranslate"><span class="pre">TaskDurations.block_and_quality_check</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.assign_histopathologist"><code class="docutils literal notranslate"><span class="pre">TaskDurations.assign_histopathologist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.TaskDurations.write_report"><code class="docutils literal notranslate"><span class="pre">TaskDurations.write_report</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips"><code class="docutils literal notranslate"><span class="pre">Wips</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.total"><code class="docutils literal notranslate"><span class="pre">Wips.total</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_reception"><code class="docutils literal notranslate"><span class="pre">Wips.in_reception</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_cut_up"><code class="docutils literal notranslate"><span class="pre">Wips.in_cut_up</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_processing"><code class="docutils literal notranslate"><span class="pre">Wips.in_processing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_microtomy"><code class="docutils literal notranslate"><span class="pre">Wips.in_microtomy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_staining"><code class="docutils literal notranslate"><span class="pre">Wips.in_staining</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_labelling"><code class="docutils literal notranslate"><span class="pre">Wips.in_labelling</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_scanning"><code class="docutils literal notranslate"><span class="pre">Wips.in_scanning</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_qc"><code class="docutils literal notranslate"><span class="pre">Wips.in_qc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Wips.in_reporting"><code class="docutils literal notranslate"><span class="pre">Wips.in_reporting</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals"><code class="docutils literal notranslate"><span class="pre">Globals</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_internal"><code class="docutils literal notranslate"><span class="pre">Globals.prob_internal</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_urgent_cancer"><code class="docutils literal notranslate"><span class="pre">Globals.prob_urgent_cancer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_urgent_non_cancer"><code class="docutils literal notranslate"><span class="pre">Globals.prob_urgent_non_cancer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_priority_cancer"><code class="docutils literal notranslate"><span class="pre">Globals.prob_priority_cancer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_priority_non_cancer"><code class="docutils literal notranslate"><span class="pre">Globals.prob_priority_non_cancer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_prebook"><code class="docutils literal notranslate"><span class="pre">Globals.prob_prebook</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_invest_easy"><code class="docutils literal notranslate"><span class="pre">Globals.prob_invest_easy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_invest_hard"><code class="docutils literal notranslate"><span class="pre">Globals.prob_invest_hard</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_invest_external"><code class="docutils literal notranslate"><span class="pre">Globals.prob_invest_external</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_bms_cutup"><code class="docutils literal notranslate"><span class="pre">Globals.prob_bms_cutup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_bms_cutup_urgent"><code class="docutils literal notranslate"><span class="pre">Globals.prob_bms_cutup_urgent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_large_cutup"><code class="docutils literal notranslate"><span class="pre">Globals.prob_large_cutup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_large_cutup_urgent"><code class="docutils literal notranslate"><span class="pre">Globals.prob_large_cutup_urgent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_pool_cutup"><code class="docutils literal notranslate"><span class="pre">Globals.prob_pool_cutup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_pool_cutup_urgent"><code class="docutils literal notranslate"><span class="pre">Globals.prob_pool_cutup_urgent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_mega_blocks"><code class="docutils literal notranslate"><span class="pre">Globals.prob_mega_blocks</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_decalc_bone"><code class="docutils literal notranslate"><span class="pre">Globals.prob_decalc_bone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_decalc_oven"><code class="docutils literal notranslate"><span class="pre">Globals.prob_decalc_oven</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.prob_microtomy_levels"><code class="docutils literal notranslate"><span class="pre">Globals.prob_microtomy_levels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_blocks_large_surgical"><code class="docutils literal notranslate"><span class="pre">Globals.num_blocks_large_surgical</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_blocks_mega"><code class="docutils literal notranslate"><span class="pre">Globals.num_blocks_mega</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_slides_larges"><code class="docutils literal notranslate"><span class="pre">Globals.num_slides_larges</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_slides_levels"><code class="docutils literal notranslate"><span class="pre">Globals.num_slides_levels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_slides_megas"><code class="docutils literal notranslate"><span class="pre">Globals.num_slides_megas</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Globals.num_slides_serials"><code class="docutils literal notranslate"><span class="pre">Globals.num_slides_serials</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes"><code class="docutils literal notranslate"><span class="pre">RunnerTimes</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.reception_cutup"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.reception_cutup</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.cutup_processing"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.cutup_processing</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.processing_microtomy"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.processing_microtomy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.microtomy_staining"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.microtomy_staining</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.staining_labelling"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.staining_labelling</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.labelling_scanning"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.labelling_scanning</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.scanning_qc"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.scanning_qc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.extra_loading"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.extra_loading</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.RunnerTimes.extra_unloading"><code class="docutils literal notranslate"><span class="pre">RunnerTimes.extra_unloading</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.num_reps"><code class="docutils literal notranslate"><span class="pre">Model.num_reps</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.sim_length"><code class="docutils literal notranslate"><span class="pre">Model.sim_length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.resources"><code class="docutils literal notranslate"><span class="pre">Model.resources</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.task_durations"><code class="docutils literal notranslate"><span class="pre">Model.task_durations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.batch_sizes"><code class="docutils literal notranslate"><span class="pre">Model.batch_sizes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.globals"><code class="docutils literal notranslate"><span class="pre">Model.globals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.specimen_data"><code class="docutils literal notranslate"><span class="pre">Model.specimen_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.wips"><code class="docutils literal notranslate"><span class="pre">Model.wips</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.processes"><code class="docutils literal notranslate"><span class="pre">Model.processes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.setup"><code class="docutils literal notranslate"><span class="pre">Model.setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.model.html#histopath_bim_des.model.Model.run"><code class="docutils literal notranslate"><span class="pre">Model.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.specimens.html">histopath_bim_des.specimens module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Priority"><code class="docutils literal notranslate"><span class="pre">Priority</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Priority.ROUTINE"><code class="docutils literal notranslate"><span class="pre">Priority.ROUTINE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Priority.CANCER"><code class="docutils literal notranslate"><span class="pre">Priority.CANCER</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Priority.PRIORITY"><code class="docutils literal notranslate"><span class="pre">Priority.PRIORITY</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Priority.URGENT"><code class="docutils literal notranslate"><span class="pre">Priority.URGENT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component.prio"><code class="docutils literal notranslate"><span class="pre">Component.prio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Component.parent"><code class="docutils literal notranslate"><span class="pre">Component.parent</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Specimen"><code class="docutils literal notranslate"><span class="pre">Specimen</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Specimen.setup"><code class="docutils literal notranslate"><span class="pre">Specimen.setup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Specimen.process"><code class="docutils literal notranslate"><span class="pre">Specimen.process()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Specimen.timestamp"><code class="docutils literal notranslate"><span class="pre">Specimen.timestamp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Block"><code class="docutils literal notranslate"><span class="pre">Block</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Block.setup"><code class="docutils literal notranslate"><span class="pre">Block.setup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Slide"><code class="docutils literal notranslate"><span class="pre">Slide</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Slide.setup"><code class="docutils literal notranslate"><span class="pre">Slide.setup()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Batch"><code class="docutils literal notranslate"><span class="pre">Batch</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Batch.items"><code class="docutils literal notranslate"><span class="pre">Batch.items</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Batch.data"><code class="docutils literal notranslate"><span class="pre">Batch.data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="histopath_bim_des.specimens.html#histopath_bim_des.specimens.Batch.setup"><code class="docutils literal notranslate"><span class="pre">Batch.setup()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="histopath_bim_des.util.html">histopath_bim_des.util module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.util.html#histopath_bim_des.util.ARR_RATE_INTERVAL_HOURS"><code class="docutils literal notranslate"><span class="pre">ARR_RATE_INTERVAL_HOURS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="histopath_bim_des.util.html#histopath_bim_des.util.RESOURCE_ALLOCATION_INTERVAL_HOURS"><code class="docutils literal notranslate"><span class="pre">RESOURCE_ALLOCATION_INTERVAL_HOURS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-histopath_bim_des">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-histopath_bim_des" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../processes.html" class="btn btn-neutral float-left" title="Histopathology processes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="histopath_bim_des.config.html" class="btn btn-neutral float-right" title="histopath_bim_des.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yin-Chi Chan, Nicola Moretti.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

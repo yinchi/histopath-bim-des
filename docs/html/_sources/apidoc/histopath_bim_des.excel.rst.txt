@@ -1,0 +1,7 @@
+histopath\_bim\_des.excel module
+================================
+
+.. automodule:: histopath_bim_des.excel
+   :members:
+   :undoc-members:
+   :show-inheritance:
