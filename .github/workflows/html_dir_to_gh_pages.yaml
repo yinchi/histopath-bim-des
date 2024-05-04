@@ -1,9 +1,13 @@
-name: HTML dir to gh-pages
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
 
 on:
+  # Runs on pushes targeting the default branch
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -11,19 +15,29 @@ permissions:
   pages: write
   id-token: write
 
-# workflow_dispatch:        # Un comment line if you also want to trigger action manually
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  html_dir_to_gh-pages:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    name: HTML dir to gh-pages
-      
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          fetch-depth: 0
-      - name: HTML dir to GitHub Pages
-        uses: uibcdf/action-html-dir-to-gh-pages@1.0.0
-        with:
-          branch: main
-          html_dir: docs/_build/html
+          name: html-docs
+          path: docs/_build/html/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
