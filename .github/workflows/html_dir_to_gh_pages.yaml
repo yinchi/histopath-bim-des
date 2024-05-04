@@ -1,0 +1,22 @@
+name: HTML dir to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+
+# workflow_dispatch:        # Un comment line if you also want to trigger action manually
+
+jobs:
+  html_dir_to_gh-pages:
+    runs-on: ubuntu-latest
+    name: HTML dir to gh-pages
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Running the HTML dir to gh-pages Action
+        uses: uibcdf/action-html-dir-to-gh-pages@v1.0.0
+        with:
+          branch: main
+          html_dir: docs/_build/html
