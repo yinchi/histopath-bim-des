@@ -25,6 +25,7 @@ Examples can be found in the ``notebooks/`` directory of this project.
    config
    simulation
    processes
+   `Jupyter notebooks <https://github.com/yinchi/histopath-bim-des/tree/main/notebooks>`_
 
 .. toctree::
    :maxdepth: 2

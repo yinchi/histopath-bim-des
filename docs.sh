@@ -1,9 +1,11 @@
 build-docs() {
     pushd `git rev-parse --show-toplevel`
     poetry run sphinx-apidoc -fe -o docs/apidoc/ histopath_bim_des/
-    cd docs
+    pushd docs
+    rm -rf html
     poetry run make html
-    cp -r _build/html html
+    cp -r _build/html .
+    popd
     popd
 }
 
