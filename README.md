@@ -8,10 +8,34 @@
 
 ## Developer Setup
 
+**VSCode and WSL2 (for Windows users)**
+
+It is recommended to work on this project using Visual Studio Code with WSL2, which provides a
+Linux environment on Windows. See
+[this tutorial](https://learn.microsoft.com/en-us/windows/wsl/tutorials/wsl-vscode) on
+how to set up VSCode and WSL2.
+
+**Cloning the repository**
+
+```bash
+git clone https://github.com/yinchi/histopath-bim-des.git
+cd histopath-bim-des
+
+# Open the newly cloned repo in VS Code
+code .
+```
+
+**Installing the project and its dependencies**
+
 This project uses the [Poetry](https://python-poetry.org/) package manager.
 To set up the project on your local computer, run:
 
 ```bash
+# Installs poetry system-wide 
+sudo apt install python3-poetry
+# optional
+poetry config virtualenvs.in-project true
+
 poetry install
 ```
 
