@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BIM-DES integration demo &mdash; histopath-bim-des 0.0.0 documentation</title>
+  <title>Installation &mdash; histopath-bim-des 0.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
 
@@ -21,7 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Model Configuration" href="config.html" /> 
+    <link rel="next" title="Third-party libraries" href="thirdparty.html" />
+    <link rel="prev" title="Histopathology processes" href="processes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +33,7 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             histopath-bim-des
           </a>
 <div role="search">
@@ -51,8 +52,8 @@
 <li class="toctree-l1"><a class="reference internal" href="processes.html">Histopathology processes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Technical</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation ⬇️</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation ⬇️</a></li>
 <li class="toctree-l1"><a class="reference internal" href="thirdparty.html">Third-party libraries 📚</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API reference 📖</span></p>
@@ -72,17 +73,17 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">histopath-bim-des</a>
+          <a href="index.html">histopath-bim-des</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">BIM-DES integration demo</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/yinchi/histopath-bim-des/blob/main/docs/index.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/yinchi/histopath-bim-des/blob/main/docs/installation.md" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -90,31 +91,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="bim-des-integration-demo">
-<h1>BIM-DES integration demo<a class="headerlink" href="#bim-des-integration-demo" title="Link to this heading"></a></h1>
-<p><strong>Authors:</strong></p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://yinchi.github.io">Yin-Chi Chan</a>,
-Institute for Manufacturing, University of Cambridge (maintainer)</p></li>
-<li><p><a class="reference external" href="https://profiles.ucl.ac.uk/89826-nicola-moretti/">Nicola Moretti</a>, Bartlett School of Sustainable Construction, University College London</p></li>
-</ul>
-<p>This Python package contains code for a BIM-DES (building information modelling and discrete event
-simulation) integration model of the histopathology lab at Addenbrooke’s Hospital, Cambridge, UK.
-By parsing an .ifc (<a class="reference external" href="https://technical.buildingsmart.org/standards/ifc/">Industry Foundation Classes</a>)
-file, a <a class="reference internal" href="apidoc/histopath_bim_des.config.runners.html#histopath_bim_des.config.runners.RunnerTimesConfig" title="histopath_bim_des.config.runners.RunnerTimesConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RunnerTimesConfig</span></code></a> object can be constructed,
-which is used in turn to build a simulation model that can estimate key performance indicators such
-as the proportion of specimens completed within a given number of days.</p>
-<p>By enabling or disabling pathways in the parsed .ifc file, different runner times will be
-calculated, resulting in different performance with respect to the key performance indicators
-(KPIs) such as mean lab turnaround time (TAT) and service level (% of lab TAT less than <em>N</em> days).
-Examples can be found in the <a class="reference external" href="https://github.com/yinchi/histopath-bim-des/tree/main/notebooks">notebooks/</a> directory of this project.</p>
-<div class="toctree-wrapper compound">
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>This project was developed using the <a class="reference external" href="https://python-poetry.org/">Poetry</a> package manager and
+Python 3.12. To install the Python package and its dependencies, the following bash scripts can
+be used:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>poetry
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p><strong>OR</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-poetry
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
+<p>The second form is necessary if the pip option returns an
+“<code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">environment</span> <span class="pre">is</span> <span class="pre">externally</span> <span class="pre">managed</span></code>” error.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yinchi/histopath-bim-des
+<span class="nb">cd</span><span class="w"> </span>histopath-bim-des
+
+<span class="c1"># if you have obtained a copy of histo.ifc</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>assets/private/
+cp<span class="w"> </span>/path/to/histo.ifc<span class="w"> </span>assets/private/
+
+<span class="c1"># required by erdantic</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libgraphviz-dev
+
+<span class="c1"># If 3.12 is not the default Python version</span>
+poetry<span class="w"> </span>venv<span class="w"> </span>use<span class="w"> </span>/usr/bin/python3/12
+
+poetry<span class="w"> </span>install
+</pre></div>
 </div>
 </section>
 
@@ -122,7 +127,8 @@ Examples can be found in the <a class="reference external" href="https://github.
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="config.html" class="btn btn-neutral float-right" title="Model Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="processes.html" class="btn btn-neutral float-left" title="Histopathology processes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="thirdparty.html" class="btn btn-neutral float-right" title="Third-party libraries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

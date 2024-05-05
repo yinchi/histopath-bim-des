@@ -51,3 +51,11 @@ intersphinx_mapping = {
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+
+html_context = {
+    'display_github': True,
+    'github_user': 'yinchi',
+    'github_repo': 'histopath-bim-des',
+    'github_version': 'main',
+    'conf_py_path': '/docs/',
+}
