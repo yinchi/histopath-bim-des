@@ -42,13 +42,23 @@ poetry install
 Other useful Poetry commands include `add`, `remove`, and `run`. As this project is not meant to
 be used as a library, the `build` and `publish` commands are not recommended.
 
-## docs.sh
+## scripts.sh
 
-`docs.sh` contains functions for Sphinx documentation. To use these, run the following in `bash`:
+`scripts.sh` contains functions for Sphinx documentation. To use these, run the following in `bash`:
 
 ```bash
-source docs.sh
+poetry shell
+
+# in the new bash subshell:
+
+source scripts.sh
 clean-docs  # reset the /docs directory
 build-docs
 serve-docs  # defaulting to port 8000
+
+# use CTRL+D to exit to the base shell.
 ```
+
+`scripts.sh` also provides `projroot()` for quickly changing to the root of the project directory,
+as well as adding `script/` to the `PATH` environment variable.
+
