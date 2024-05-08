@@ -21,3 +21,9 @@ serve-docs() {
     python -m http.server --directory docs/_build/html/
     popd
 }
+
+projroot() {
+    cd `git rev-parse --show-toplevel`
+}
+
+PATH=$PATH:`git rev-parse --show-toplevel`/scripts
