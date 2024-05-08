@@ -1,10 +1,10 @@
-# BIM-DES
+# Histopathology BIM-DES integration demo
 
 **Maintainer:** Yin-Chi Chan, Institute for Manufacturing, University of Cambridge
 
 **Authors:**
-- Yin-Chi Chan, University of Cambridge (BIM-DES integration, simulation modules)
-- Nicola Moretti, University College London (BIM-DES integration)
+- [Yin-Chi Chan](https://yinchi.github.io), University of Cambridge (BIM-DES integration, simulation modules)
+- [Nicola Moretti](https://profiles.ucl.ac.uk/89826), University College London (BIM-DES integration)
 
 ## Developer Setup
 
