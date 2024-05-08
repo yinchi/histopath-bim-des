@@ -5,3 +5,6 @@ __pycache__
 *private*
 docs/apidoc
 notebooks/outputs
+
+# Not ready to publish, can remove once submitted
+paper
