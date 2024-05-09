@@ -1,5 +1,9 @@
 # Histopathology BIM-DES integration demo
 
+[![GitHub License](https://img.shields.io/github/license/yinchi/histopath-bim-des)](https://github.com/yinchi/histopath-bim-des/blob/main/LICENSE)
+![GitHub last commit](https://img.shields.io/github/last-commit/yinchi/histopath-bim-des)
+[![Static Badge](https://img.shields.io/badge/docs-00cc00)](https://yinchi.github.io/histopath-bim-des/)
+
 **Maintainer:** Yin-Chi Chan, Institute for Manufacturing, University of Cambridge
 
 **Authors:**
