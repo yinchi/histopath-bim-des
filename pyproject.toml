@@ -29,6 +29,7 @@ pydantic = "^2.7.1"
 dacite = "^1.8.1"
 scipy = "^1.13.0"
 salabim = "^24.0.4.post1"
+pyarrow = "^19.0.1"
 
 
 [tool.poetry.group.dev.dependencies]
